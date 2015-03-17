@@ -3,7 +3,7 @@ r1 = 0;
 r2 = 3900;
 c1 = 0;
 c2 = 0;
-stockPrices = csvread('~/Downloads/aapl.csv', r1, c1, [r1 c1 r2 c2]);
+stockPrices = csvread('aapl.csv', r1, c1, [r1 c1 r2 c2]);
 
 priceScalar = max(stockPrices);
 stockPrices = stockPrices(end:-1:1) / priceScalar - 0.5;
