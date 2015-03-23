@@ -18,7 +18,7 @@ normalizedPriceChanges = normalizedPriceChanges / normalizedScalar;
 %normalizedPriceChanges = priceChanges;
 %normalizedPriceChanges = stockPrices;
 
-windowSize = 7;
+windowSize = 4;
 patterns = [];
 targets = [];
 means = [];
@@ -71,11 +71,17 @@ growingIndexes = @(p) indexes(p(indexes+1)' > p(indexes)');
 
 
 calculateCash = @(predictedPrices) prod(stockPrices(growingIndexes(predictedPrices)+1) ./ stockPrices(growingIndexes(predictedPrices)));
-predictedCash = calculateCash(predictedPrices)
-meanCash = calculateCash(means)
-leastSquaresCash = calculateCash(leastSquares)
-bestCash = calculateCash(stockPrices)
-randomCash = stockPrices(end) / stockPrices(1)
+cash = calculateCash()
+
+
+cash = 1;
+
+for i=1:length(predictor)-1
+    if predictor(i+1) > predictor(i)
+        cash = cash * stockPrices(i+1) / stockPrices(i);
+    end
+end
+cash
 
 title('Apple Inc')
 ylabel('Price')
