@@ -147,3 +147,4 @@ winnings = totalWinnings / index
 winnerDuringDecline
 winningsDuringDecline = totalWinningsDuringDecline / numDecliningPeriods
 
+
