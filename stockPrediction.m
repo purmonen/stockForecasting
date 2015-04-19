@@ -1,16 +1,16 @@
 clear all;
 
 % Open	High	Low	Close	Volume
-allStockPrices = csvread('omx30.csv');
+allStockPrices = csvread('sp.csv');
 
 % Move closing price to first index so we won't need to change price index
-%allStockPrices = [allStockPrices(:, 4), allStockPrices(:, 1:3), allStockPrices(:, 5:end)];
+allStockPrices = [allStockPrices(:, 4), allStockPrices(:, 1:3), allStockPrices(:, 5:end)];
 
 % Reverse prices so they are in correct order
 allStockPrices = allStockPrices(end:-1:1, :);
 %allStockPrices = [allStockPrices(:, 1), allStockPrices(:, 5:5)];
-allStockPrices = allStockPrices(:, 1);
-allStockPrices = allStockPrices(1:1500, 1);
+%allStockPrices = allStockPrices(:, 1:5);
+%allStockPrices = allStockPrices(:, 1);
 
 priceIndex = 1;
 
@@ -20,12 +20,15 @@ priceIndex = 1;
 index = 0;
 winner = [0,0,0,0];
 totalWinnings = [0,0,0,0];
-winnerDuringDecline = [0,0,0,0];
 
-sampleSize = floor(length(allStockPrices) / 20);
+winnerDuringDecline = [0,0,0,0];
+totalWinningsDuringDecline = [0,0,0,0];
+
+
+sampleSize = floor(length(allStockPrices) / 30);
 %sampleSize = 300;
-windowSize = 1;
-trainingSize = 50;
+windowSize = 5;
+trainingSize = 100;
 validationSize = 0;
 while (index+1)*sampleSize <= length(allStockPrices)
     stockPrices = allStockPrices(index*sampleSize+1:(index+1)*sampleSize, :);
@@ -56,7 +59,7 @@ while (index+1)*sampleSize <= length(allStockPrices)
         patterns = [patterns, reshape(windowPatterns, numel(windowPatterns),1)];
         
         windowTargets = normalizedPriceChanges(i+windowSize,:);
-        targets = [targets, windowTargets];
+        targets = [targets, windowTargets(priceIndex)];
         
         windowMeans =  mean(normalizedPriceChanges(i:i+windowSize-1, :));
         means = [means, reshape(windowMeans, numel(windowMeans),1)];
@@ -65,7 +68,7 @@ while (index+1)*sampleSize <= length(allStockPrices)
     perceptron = MultilayerPerceptron();
     perceptron.plottingEnabled = false;
     perceptron.iterations = 500;
-    perceptron.hiddenNodes = 10;
+    perceptron.hiddenNodes = 20;
     perceptron.eta = 0.01;
     
     trainingInput = patterns(:, 1:(trainingSize-validationSize));
@@ -121,6 +124,7 @@ while (index+1)*sampleSize <= length(allStockPrices)
     totalWinnings(bestMethods) = totalWinnings(bestMethods) + greatestCash;
     if randomCash < 1
         winnerDuringDecline(bestMethods) = winnerDuringDecline(bestMethods) + 1;
+        totalWinningsDuringDecline(bestMethods) = totalWinningsDuringDecline(bestMethods) + greatestCash;
     end
     
     title('OMX Stockholm 30')
@@ -137,3 +141,4 @@ end
 winner
 winnings = totalWinnings / index
 winnerDuringDecline
+winningsDuringDecline = totalWinningsDuringDecline / index
