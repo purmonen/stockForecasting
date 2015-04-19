@@ -2,7 +2,7 @@ clear all;
 
 % Open	High	Low	Close	Volume
 allPrices = csvread('sp.csv');
-allPrices = allPrices(1:end/10, :);
+allPrices = allPrices(1:end/100, :);
 % Move closing price to first index so we won't need to change price index
 allPrices = [allPrices(:, 4), allPrices(:, 1:3), allPrices(:, 5:end)];
 
@@ -19,7 +19,7 @@ totalWinnings = [0,0,0,0];
 winnerDuringDecline = [0,0,0,0];
 totalWinningsDuringDecline = [0,0,0,0];
 sampleSize = floor(length(allPrices) / 10)
-sampleSize = 100
+sampleSize = 20
 
 %sampleSize = 300;
 windowSize = 1;
@@ -59,7 +59,7 @@ for index=1:size(allPrices,1)-windowSize-sampleSize-2
     
     perceptron = MultilayerPerceptron();
     perceptron.plottingEnabled = false;
-    perceptron.iterations = 100;
+    perceptron.iterations = 5;
     perceptron.hiddenNodes = 4;
     perceptron.eta = 0.01;
     
@@ -88,43 +88,51 @@ plot([allRealPrices allPredictedPrices])
 meanPercentageError = @(v) sum(abs(allRealPrices - v) ./ allRealPrices) / length(allRealPrices)*100;
 meanPercentageError(allPredictedPrices)
 
-indexes = 1:length(allPredictedPrices)-1;
-growingIndexes = @(p) indexes(p(indexes+1)' > p(indexes)');
-calculateCash = @(predictedPrices) prod(allRealPrices(growingIndexes(predictedPrices)+1) ./ allRealPrices(growingIndexes(predictedPrices)));
-
-realPrices = allRealPrices;
 
 winner = [0,0,0,0];
 totalWinnings = [0,0,0,0];
-
 winnerDuringDecline = [0,0,0,0];
 totalWinningsDuringDecline = [0,0,0,0];
 
-prices = [allPredictedPrices];
-randomCash = realPrices(end) / realPrices(1);
-greatestCash = randomCash;
-totalWinnings(4) = totalWinnings(4) + randomCash;
-bestMethods = [4];
 
-for i=1:size(prices,2)
-    cash = calculateCash(prices(:,i));
-    totalWinnings(i) = totalWinnings(i) + cash;
+periodSize = 5;
+periodPredictedPrices = reshape(allPredictedPrices(1:length(allPredictedPrices)-mod(length(allPredictedPrices),periodSize)), periodSize, floor(length(allPredictedPrices) / periodSize));
+periodPrices = reshape(allRealPrices(1:length(allRealPrices)-mod(length(allRealPrices),periodSize)), periodSize, floor(length(allRealPrices) / periodSize));
+
+for period=1:size(periodPredictedPrices,2)
+    realPrices = periodPrices(:, period);
+    predictedPrices = periodPredictedPrices(:, period);
+    prices = [predictedPrices];
+    bestMethods = [4];
+    indexes = 1:length(realPrices)-1;
+    growingIndexes = @(p) indexes(p(indexes+1)' > p(indexes)');
+    calculateCash = @(predictedPrices) prod(realPrices(growingIndexes(predictedPrices)+1) ./ realPrices(growingIndexes(predictedPrices)));
+    
+    randomCash = realPrices(end) / realPrices(1);
+    greatestCash = randomCash;
+    totalWinnings(4) = totalWinnings(4) + randomCash;
+    for i=1:1
+        cash = calculateCash(predictedPrices);
+        totalWinnings(i) = totalWinnings(i) + cash;
+        if randomCash < 1
+            totalWinningsDuringDecline(i) = totalWinningsDuringDecline(i) + cash;
+        end
+        if cash > greatestCash
+            greatestCash = cash;
+            bestMethods = [i];
+        elseif cash == greatestCash
+            bestMethods = [bestMethods; i];
+        end
+    end
+    winner(bestMethods) = winner(bestMethods) + 1;
     if randomCash < 1
-        totalWinningsDuringDecline(i) = totalWinningsDuringDecline(i) + cash;
-    end
-    if cash > greatestCash
-        greatestCash = cash;
-        bestMethods = [i];
-    elseif cash == greatestCash
-        bestMethods = [bestMethods; i];
+        numDecliningPeriods = numDecliningPeriods + 1;
+        winnerDuringDecline(bestMethods) = winnerDuringDecline(bestMethods) + 1;
+        totalWinningsDuringDecline(4) = totalWinningsDuringDecline(4) + randomCash;
     end
 end
-winner(bestMethods) = winner(bestMethods) + 1;
-if randomCash < 1
-    numDecliningPeriods = numDecliningPeriods + 1;
-    winnerDuringDecline(bestMethods) = winnerDuringDecline(bestMethods) + 1;
-    totalWinningsDuringDecline(4) = totalWinningsDuringDecline(4) + randomCash;
-end
+
+
 
 winner
 winnings = totalWinnings
