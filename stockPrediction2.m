@@ -1,8 +1,8 @@
 clear all;
 
 % Open	High	Low	Close	Volume
-allPrices = csvread('sp.csv');
-allPrices = allPrices(1:end/80+300, :);
+allPrices = csvread('hsi.csv');
+allPrices = allPrices(1:end/140+300, :);
 % Move closing price to first index so we won't need to change price index
 allPrices = [allPrices(:, 4), allPrices(:, 1:3), allPrices(:, 5:end)];
 
@@ -151,3 +151,6 @@ dirCor = @(p) sum(((allRealPrices(2:end) ./ allRealPrices(1:end-1) - 1) .* (p(2:
 
 
 sum(((allRealPrices(2:end) ./ allBeforeRealPrices(2:end) - 1) .* (allPredictedPrices(2:end) ./ allPredictedPrices(1:end-1) - 1) > 0)) / (length(allRealPrices)-1)
+
+
+plot([allRealPrices allPredictedPrices])
