@@ -22,7 +22,7 @@ winner = [0,0,0,0];
 totalWinnings = [0,0,0,0];
 winnerDuringDecline = [0,0,0,0];
 
-sampleSize = floor(length(allStockPrices) / 20);
+sampleSize = floor(length(allStockPrices) / 16);
 %sampleSize = 300;
 windowSize = 1;
 trainingSize = 50;
@@ -40,12 +40,15 @@ while (index+1)*sampleSize <= length(allStockPrices)
     normalizedOffset = (max(priceChanges) - min(priceChanges)) / 2 + min(priceChanges);
     normalizedPriceChanges = priceChanges;
     for i = 1:size(priceChanges,2)
-        normalizedPriceChanges(:, i) = normalizedPriceChanges(:, i) - normalizedOffset(i);
+       normalizedPriceChanges(:, i) = normalizedPriceChanges(:, i) - normalizedOffset(i);
     end
     normalizedScalar = max(normalizedPriceChanges);
     for i = 1:size(priceChanges,2)
-        normalizedPriceChanges(:, i) = normalizedPriceChanges(:, i) / normalizedScalar(i);
+       normalizedPriceChanges(:, i) = normalizedPriceChanges(:, i) / normalizedScalar(i);
     end
+
+    %assert(sum(sum(abs((normalizedPriceChanges * normalizedScalar(1) + normalizedOffset(1)) .* stockPrices(1:end-1,:) - stockPrices(2:end,:)))) < 0.000001)
+    %plot([(normalizedPriceChanges * normalizedScalar(1) + normalizedOffset(1)) .* stockPrices(1:end-1,:) stockPrices(2:end) ])
     
     patterns = [];
     targets = [];
@@ -61,7 +64,7 @@ while (index+1)*sampleSize <= length(allStockPrices)
         windowMeans =  mean(normalizedPriceChanges(i:i+windowSize-1, :));
         means = [means, reshape(windowMeans, numel(windowMeans),1)];
     end
-    
+
     perceptron = MultilayerPerceptron();
     perceptron.plottingEnabled = false;
     perceptron.iterations = 500;
@@ -77,7 +80,6 @@ while (index+1)*sampleSize <= length(allStockPrices)
     testInput = patterns(:, (trainingSize+1):end);
     testOutput = targets(:, (trainingSize+1):end);
     
-    % These are the prices we want to predict!
     realPrices = stockPrices(end-length(testOutput)+1:end, priceIndex);
     oneDayBeforeRealPrices = stockPrices(end-length(testOutput):end-1, priceIndex);
     
@@ -89,39 +91,78 @@ while (index+1)*sampleSize <= length(allStockPrices)
     
     perceptron.validationPatterns = validationInput;
     perceptron.validationTargets = validationOutput;
+    
+    %assert(sum(sum(abs((trainingOutput' * normalizedScalar(1) + normalizedOffset(1)) .* stockPrices(windowSize+1:end-1,:) - stockPrices(2+windowSize:end,:)))) < 0.00000001)
+
     perceptron.train(trainingInput, trainingOutput);
+    
     stockPrices = stockPrices(:,priceIndex);
     predictedChanges = perceptron.recall(testInput)' * normalizedScalar(priceIndex) + normalizedOffset(priceIndex);
-    predictedPrices =  predictedChanges .* oneDayBeforeRealPrices;
-
-    meanPercentageError = @(v) sum(abs(realPrices - v) ./ realPrices) / length(realPrices)*100;
-    %predictedPricesAnfis = stockPrices(end-length(recallInput):end-1).*(evalfis(recallInput,fis2)*normalizedScalar+normalizedOffset);    
-    rootMeanSquareError = @(v) (sum((realPrices - v).^2) / length(realPrices))^0.5;
-    indexes = 1:length(predictedPrices)-1;
-    growingIndexes = @(p) indexes(p(indexes+1)' > p(indexes)');
-    calculateCash = @(predictedPrices) prod(realPrices(growingIndexes(predictedPrices)+1) ./ realPrices(growingIndexes(predictedPrices)));
     
-    prices = [predictedPrices];
-    randomCash = realPrices(end) / realPrices(1);
-    greatestCash = randomCash;
-    totalWinnings(4) = totalWinnings(4) + randomCash;
+    predictedPrices =  predictedChanges .* oneDayBeforeRealPrices;
+    
+    getPrediction = @(v) v(end-length(predictedChanges)+1:end);
+    meanSize = 1;
+    means = getPrediction(arrayfun(@(i) mean(stockPrices(i-meanSize:i-1)), meanSize+1:size(stockPrices,1)))';
+    stockPrices = getPrediction(stockPrices);
+    
+    errPerceptron = sum(sum(abs(predictedPrices - realPrices))) / length(predictedChanges)
+    errMeans = sum(sum(abs((means - realPrices)))) / length(predictedChanges)
+    figure(1)
+    
+    plot([stockPrices(end-length(predictedPrices)+1:end) predictedPrices])
+    legend('stockPrices', 'predictedPrices')
+    
+    
+    meanPercentageError = @(v) sum(abs(stockPrices - v) ./ stockPrices) / size(stockPrices,1)*100;
+    errPerceptron2 = meanPercentageError(predictedPrices)
+    errMeans2 = meanPercentageError(means)
+    
+    %perceptron.plotErrors()
+    %for i = 1:size(predictedPrices,2)
+    %   predictedPrices(:, i) = (predictedPrices(:, i) + normalizedOffset(i)) * normalizedScalar(i);
+    %end
+
+    
+    %predictedPricesAnfis = stockPrices(end-length(recallInput):end-1).*(evalfis(recallInput,fis2)*normalizedScalar+normalizedOffset);
+    stockPrices = getPrediction(stockPrices);
+    
+    rootMeanSquareError = @(v) (sum((stockPrices - v).^2) / size(stockPrices,1))^0.5;
+    getError2 = @(v) sum(abs(stockPrices - v)) / size(stockPrices,1);
+    getErrorValidation = @(v) sum(abs(stockPrices(end-trainingSize:end) - v(end-trainingSize:end)) ...
+        ./ stockPrices(end-trainingSize:end)) / size(stockPrices(end-trainingSize:end),1)*100;
+    
+    predictor = predictedPrices;
+    indexes = 1:length(predictor)-1;
+    growingIndexes = @(p) indexes(p(indexes+1)' > p(indexes)');
+    calculateCash = @(predictedPrices) prod(stockPrices(growingIndexes(predictedPrices)+1) ./ stockPrices(growingIndexes(predictedPrices)));
+    
+    priceLabels = {'pred'; 'mean'};
+    
+    prices = [predictedPrices means];
+    
+    smallestErr = stockPrices(end) / stockPrices(1);
     bestMethods = [4];
-   
-    for i=1:size(prices,2)
-        cash = calculateCash(prices(:,i));
-        totalWinnings(i) = totalWinnings(i) + cash;
-        if cash > greatestCash
-            greatestCash = cash;
+    for i=1:length(priceLabels)
+        err = calculateCash(prices(:,i));
+        totalWinnings(i) = totalWinnings(i) + err;
+        if err > smallestErr
+            smallestErr = err;
             bestMethods = [i];
-        elseif cash == greatestCash
+        elseif err == smallestErr
             bestMethods = [bestMethods; i];
         end
+        disp([strcat(priceLabels{i}, ': Cash')]);
+        %disp([meanPercentageError(prices(:,i)) getError2(prices(:,i)) rootMeanSquareError(prices(:,i))])
+        disp([calculateCash(prices(:,i))])%
     end
+    
     winner(bestMethods) = winner(bestMethods) + 1;
-    totalWinnings(bestMethods) = totalWinnings(bestMethods) + greatestCash;
+    randomCash = realPrices(end) / realPrices(1)
     if randomCash < 1
-        winnerDuringDecline(bestMethods) = winnerDuringDecline(bestMethods) + 1;
+        winnerDuringDecline(bestMethods) = winner(bestMethods) + 1;
     end
+    totalWinnings(4) = totalWinnings(4) + randomCash;
     
     title('OMX Stockholm 30')
     ylabel('Price')
@@ -129,9 +170,7 @@ while (index+1)*sampleSize <= length(allStockPrices)
     axis tight
     %legend('Real', 'Predicted', 'Least squares', 'Training size')
     set(gcf,'color','w')
-    figure(1)
-    plot([realPrices predictedPrices])
-    legend('realPrices', 'predictedPrices')
+    %perceptron.plotErrors()
 end
 
 winner
