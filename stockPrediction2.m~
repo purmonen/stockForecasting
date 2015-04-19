@@ -2,7 +2,7 @@ clear all;
 
 % Open	High	Low	Close	Volume
 allStockPrices = csvread('sp.csv');
-allStockPrices = allStockPrices(1:300, :);
+allStockPrices = allStockPrices(1:end/3, :);
 % Move closing price to first index so we won't need to change price index
 allStockPrices = [allStockPrices(:, 4), allStockPrices(:, 1:3), allStockPrices(:, 5:end)];
 
@@ -17,7 +17,7 @@ priceIndex = 1;
 %allStockPrices = allStockPrices(1:50);
 %allStockPrices = (1:200)'.^3;
 
-index = 0;
+
 winner = [0,0,0,0];
 totalWinnings = [0,0,0,0];
 
@@ -25,16 +25,87 @@ winnerDuringDecline = [0,0,0,0];
 totalWinningsDuringDecline = [0,0,0,0];
 
 
-sampleSize = floor(length(allStockPrices) / 1)
+sampleSize = floor(length(allStockPrices) / 10)
 
 %sampleSize = 300;
 windowSize = 4;
-trainingSize = 170;
+trainingSize = 20;
 validationSize = 0;
-
 numDecliningPeriods = 0;
-while (index+1)*sampleSize <= length(allStockPrices)
-    stockPrices = allStockPrices(index*sampleSize+1:(index+1)*sampleSize, :);
+
+
+
+allPredictedPrices = [];
+for index=1:size(allStockPrices,1)-windowSize-sampleSize-2
+    stockPrices = allStockPrices(index:sampleSize+index-1, :);
+    
+    priceChanges = stockPrices(2:end,:) ./ stockPrices(1:end-1,:);
+    assert(sum(sum(abs(priceChanges .* stockPrices(1:end-1,:) - stockPrices(2:end,:)))) < 0.0001)
+    
+    normalizedOffset = (max(priceChanges) - min(priceChanges)) / 2 + min(priceChanges);
+    normalizedPriceChanges = priceChanges;
+    for i = 1:size(priceChanges,2)
+        normalizedPriceChanges(:, i) = normalizedPriceChanges(:, i) - normalizedOffset(i);
+    end
+    normalizedScalar = max(normalizedPriceChanges);
+    for i = 1:size(priceChanges,2)
+        normalizedPriceChanges(:, i) = normalizedPriceChanges(:, i) / normalizedScalar(i);
+    end
+    
+    patterns = [];
+    targets = [];
+    means = [];
+    
+    for i = 1:size(normalizedPriceChanges,1)-windowSize
+        windowPatterns = normalizedPriceChanges(i:i+windowSize-1, :);
+        patterns = [patterns, reshape(windowPatterns, numel(windowPatterns),1)];
+        
+        windowTargets = normalizedPriceChanges(i+windowSize,:);
+        targets = [targets, windowTargets(priceIndex)];
+        
+        windowMeans =  mean(normalizedPriceChanges(i:i+windowSize-1, :));
+        means = [means, reshape(windowMeans, numel(windowMeans),1)];
+    end
+    
+    perceptron = MultilayerPerceptron();
+    perceptron.plottingEnabled = false;
+    perceptron.iterations = 500;
+    perceptron.hiddenNodes = 20;
+    perceptron.eta = 0.01;
+    
+    trainingInput = patterns(:, 1:(trainingSize-validationSize));
+    trainingOutput = targets(:, 1:(trainingSize-validationSize));
+    
+    validationInput = patterns(:, (trainingSize-validationSize+1):(trainingSize));
+    validationOutput = targets(:, (trainingSize-validationSize+1):(trainingSize));
+    
+    testInput = patterns(:, (trainingSize+1):end);
+    testOutput = targets(:, (trainingSize+1):end);
+    
+    % These are the prices we want to predict!
+    realPrices = stockPrices(end-length(testOutput)+1:end, priceIndex);
+    oneDayBeforeRealPrices = stockPrices(end-length(testOutput):end-1, priceIndex);
+    
+    %testInput = trainingInput;
+    %testOutput = trainingOutput;
+    
+    %fis2 = anfis([trainingInput' trainingOutput'], [], [], [0 0 0 0], [validationInput' validationOutput'], 0);
+    %fis2 = anfis([trainingInput' trainingOutput']);
+    
+    perceptron.validationPatterns = validationInput;
+    perceptron.validationTargets = validationOutput;
+    perceptron.train(trainingInput, trainingOutput);
+    predictedChanges = perceptron.recall(testInput)' * normalizedScalar(priceIndex) + normalizedOffset(priceIndex);
+    predictedPrices =  predictedChanges .* oneDayBeforeRealPrices;
+    
+    allPredictedPrices = [allPredictedPrices; predictedPrices
+    
+end
+
+
+index = 1;
+while index < 30
+    stockPrices = allStockPrices(index:sampleSize+index-1, :);
     assert(length(stockPrices) == sampleSize)
     
     disp(sprintf('Stock prices %d', index));
@@ -130,7 +201,7 @@ while (index+1)*sampleSize <= length(allStockPrices)
         winnerDuringDecline(bestMethods) = winnerDuringDecline(bestMethods) + 1;
         totalWinningsDuringDecline(4) = totalWinningsDuringDecline(4) + randomCash;
     end
-    mpe = meanPercentageError(predictedPrices)
+    
     title('OMX Stockholm 30')
     ylabel('Price')
     xlabel('Day')
@@ -146,4 +217,3 @@ winner
 winnings = totalWinnings / index
 winnerDuringDecline
 winningsDuringDecline = totalWinningsDuringDecline / numDecliningPeriods
-
