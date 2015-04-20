@@ -1,7 +1,7 @@
 clear all;
 
 % Open	High	Low	Close	Volume
-allPrices = csvread('sp500.csv');
+allPrices = csvread('hsi.csv');
 allPrices = allPrices(1:end, :);
 % Move closing price to first index so we won't need to change price index
 allPrices = [allPrices(:, 4), allPrices(:, 1:3), allPrices(:, 5:end)];
@@ -153,7 +153,10 @@ sum(((allRealPrices(2:end) ./ allBeforeRealPrices(2:end) - 1) .* (allPredictedPr
 
 
 % New way of predicting cash - can add transaction cost!
-predictedCash99 = trade(allRealPrices, allPredictedPrices, 0.12/100, 0.96)
+[predictedCashWithTransactionCost, transactions] = trade(allRealPrices, allPredictedPrices, 0.12/100, 0.96);
+predictedCashWithTransactionCost
+predictedCashWithoutTransationCost = trade(allRealPrices, allPredictedPrices, 0, 0.96)
+
 
 % S&P: 1.5641, FTSE: 2.4900, HSI: 1.9061
 
@@ -165,15 +168,6 @@ plot(x, y, 'b')
 hold on
 plot([0.85 1], [naiveCash naiveCash],'g')
 
-% Old way of predicting cash
-predictedCash2 = 1;
-for i=2:length(allPredictedPrices)
-    if allPredictedPrices(i) >= allRealPrices(i-1)
-        predictedCash2 = predictedCash2 * allRealPrices(i) / allRealPrices(i-1);
-    end
-end
-predictedCash2
-
 indexes = 1:length(allRealPrices)-1;
 growingIndexes = @(p) indexes(p(indexes+1)' > p(indexes)');
 calculateCash = @(predictedPrices) prod(allRealPrices(growingIndexes(predictedPrices)+1) ./ allRealPrices(growingIndexes(predictedPrices)));
@@ -181,3 +175,17 @@ oldCash = calculateCash(allPredictedPrices)
 
 
 (1 - sum(allRealPrices ./ allBeforeRealPrices - 1 > 0) / length(allRealPrices))^5 * 100
+
+plot(allRealPrices); hold on
+[predictedCashWithTransactionCost, transactions] = trade(allRealPrices, allPredictedPrices, 0.12/100, 0.97);
+line = [transactions(1)];
+for i = 2:length(transactions)
+    if transactions(i) == transactions(i-1) + 1
+        line = [line; transactions(i)];
+    else
+        plot(line, allRealPrices(line), 'r')
+        line = [transactions(i)];
+    end
+end
+hold off
+legend('Money out', 'Money in')

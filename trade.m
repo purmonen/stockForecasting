@@ -1,4 +1,4 @@
-function money = trade(realPrices, predictedPrices, transactionFee, sellLimit)
+function [money, transactions] = trade(realPrices, predictedPrices, transactionFee, sellLimit)
 predictedCash = 1;
 isIn = true;
 transactions = [];
@@ -7,7 +7,7 @@ for i=2:length(predictedPrices)
     if ~isIn
         trans = predictedCash * transactionFee * 1;
     end
-    if predictedPrices(i) >= realPrices(i-1)
+    if predictedPrices(i) >= realPrices(i-1) + trans
         predictedCash = (predictedCash-trans) * realPrices(i) / realPrices(i-1);
         isIn = true;
     elseif isIn && predictedPrices(i) >= realPrices(i-1) * sellLimit
@@ -18,5 +18,4 @@ for i=2:length(predictedPrices)
     end
 end
 money = predictedCash;
-transactions
 end
