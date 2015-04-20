@@ -18,10 +18,10 @@ totalWinningsNew = [0,0,0,0,0];
 winnerDuringDecline = [0,0,0,0,0];
 totalWinningsDuringDecline = [0,0,0,0,0];
 %sampleSize = floor(length(allPrices) / 10)
-sampleSize = 20
+sampleSize = 30
 
 %sampleSize = 300;
-windowSize = 2;
+windowSize = 3;
 trainingSize = sampleSize-windowSize-1
 validationSize = 0;
 numDecliningPeriods = 0;
@@ -59,9 +59,9 @@ for index=1:size(allPrices,1)-windowSize-sampleSize-2
     
     perceptron = MultilayerPerceptron();
     perceptron.plottingEnabled = false;
-    perceptron.iterations = 20;
-    perceptron.hiddenNodes = 4;
-    perceptron.eta = 0.01;
+    perceptron.iterations = 30;
+    perceptron.hiddenNodes = 3;
+    perceptron.eta = 0.05;
     
     trainingInput = patterns(:, 1:(trainingSize-validationSize));
     trainingOutput = targets(:, 1:(trainingSize-validationSize));
@@ -114,48 +114,20 @@ for period=1:size(periodPredictedPrices,2)
     indexes = 1:length(realPrices)-1;
     growingIndexes = @(p) indexes(p(indexes+1)' > p(indexes)');
     calculateCash = @(predictedPrices) prod(realPrices(growingIndexes(predictedPrices)+1) ./ realPrices(growingIndexes(predictedPrices)));
-    calculateCash = @(predictedPrices) prod(realPrices(growingIndexes(predictedPrices)+1) ./ realPrices(growingIndexes(predictedPrices)));
-    
     randomCash = realPrices(end) / realPrices(1);
     greatestCash = randomCash;
     totalWinnings(4) = totalWinnings(4) * randomCash;
     for i=1:size(prices,2)
         p = prices(:, i);
-        cash = 1;
-        predictedCash = 1;
-        isIn = true;
-        for j=2:length(p)
-            if p(j) >= realPrices(j-1)
-                trans = predictedCash * 0.000;
-                if ~isIn
-                    predictedCash = predictedCash - trans;
-                end
-                predictedCash = predictedCash * realPrices(j) / realPrices(j-1);
-                isIn = true;
-            else
-                isIn = false;
-            end
-        end
-        cash = predictedCash;
-        totalWinnings(i) = totalWinnings(i) * cash;
-        
-        
-        predictedCash = 1;
-        
-        for j=2:length(prices(:, i))
-            if prices(j, i) >= realPrices(j-1)
-                predictedCash = predictedCash * realPrices(j) / realPrices(j-1);
-            end
-        end
-        totalWinningsNew(i) = totalWinningsNew(i) + predictedCash;
-        
+        money = trade(realPrices, predictedPrices, 0.12/100, 0.96);
+        totalWinnings(i) = totalWinnings(i) * money;
         if randomCash < 1
-            totalWinningsDuringDecline(i) = totalWinningsDuringDecline(i) + cash;
+            totalWinningsDuringDecline(i) = totalWinningsDuringDecline(i) + money;
         end
-        if cash > greatestCash
-            greatestCash = cash;
+        if money > greatestCash
+            greatestCash = money;
             bestMethods = [i];
-        elseif cash == greatestCash
+        elseif money == greatestCash
             bestMethods = [bestMethods; i];
         end
     end
@@ -177,43 +149,35 @@ mlpMpe = meanAbsolutePercentageError(allPredictedPrices)
 naiveMpe = meanAbsolutePercentageError(allBeforeRealPrices);
 
 dirCor = @(p) sum(((allRealPrices(2:end) ./ allRealPrices(1:end-1) - 1) .* (p(2:end) ./ p(1:end-1) - 1) > 0)) / (length(allRealPrices)-1);
-
-
 sum(((allRealPrices(2:end) ./ allBeforeRealPrices(2:end) - 1) .* (allPredictedPrices(2:end) ./ allPredictedPrices(1:end-1) - 1) > 0)) / (length(allRealPrices)-1);
 
 
 % New way of predicting cash - can add transaction cost!
-predictedCash = 1;
-isIn = true;
-for i=2:length(allPredictedPrices)
-    if allPredictedPrices(i) >= allRealPrices(i-1)
-        trans = predictedCash * 0.000;
-        if ~isIn
-            predictedCash = predictedCash - trans;
-        end
-        predictedCash = predictedCash * allRealPrices(i) / allRealPrices(i-1);
-        isIn = true;
-    else
-        isIn = false;
-    end
-end
-predictedCash
+predictedCash99 = trade(allRealPrices, allPredictedPrices, 0.12/100, 0.96)
 
+% S&P: 1.5641, FTSE: 2.4900, HSI: 1.9061
+
+naiveCash = allRealPrices(end) / allRealPrices(1)
+
+x = 0.85:0.0001:1;
+y = arrayfun(@(x) trade(allRealPrices, allPredictedPrices, 0.12/100, x), x);
+plot(x, y, 'b')
+hold on
+plot([0.85 1], [naiveCash naiveCash],'g')
 
 % Old way of predicting cash
 predictedCash2 = 1;
 for i=2:length(allPredictedPrices)
-    if allPredictedPrices(i) >= allPredictedPrices(i-1)
+    if allPredictedPrices(i) >= allRealPrices(i-1)
         predictedCash2 = predictedCash2 * allRealPrices(i) / allRealPrices(i-1);
     end
 end
 predictedCash2
 
-
-naiveCash = allRealPrices(end) / allRealPrices(1)
-
-
 indexes = 1:length(allRealPrices)-1;
 growingIndexes = @(p) indexes(p(indexes+1)' > p(indexes)');
 calculateCash = @(predictedPrices) prod(allRealPrices(growingIndexes(predictedPrices)+1) ./ allRealPrices(growingIndexes(predictedPrices)));
 oldCash = calculateCash(allPredictedPrices)
+
+
+(1 - sum(allRealPrices ./ allBeforeRealPrices - 1 > 0) / length(allRealPrices))^5 * 100
