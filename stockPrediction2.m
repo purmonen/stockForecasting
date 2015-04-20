@@ -1,8 +1,8 @@
 clear all;
 
 % Open	High	Low	Close	Volume
-allPrices = csvread('hsi.csv');
-allPrices = allPrices(1:end/140+300, :);
+allPrices = csvread('sp500.csv');
+allPrices = allPrices(1:end, :);
 % Move closing price to first index so we won't need to change price index
 allPrices = [allPrices(:, 4), allPrices(:, 1:3), allPrices(:, 5:end)];
 
@@ -12,14 +12,16 @@ allPriceChanges = allPrices(2:end,:) ./ allPrices(1:end-1,:);
 
 priceIndex = 1;
 winner = [0,0,0,0, 0];
-totalWinnings = [0,0,0,0,0];
+winnerNew = [0,0,0,0, 0];
+totalWinnings = [1,1,1,1,1];
+totalWinningsNew = [0,0,0,0,0];
 winnerDuringDecline = [0,0,0,0,0];
 totalWinningsDuringDecline = [0,0,0,0,0];
 %sampleSize = floor(length(allPrices) / 10)
-sampleSize = 12
+sampleSize = 20
 
 %sampleSize = 300;
-windowSize = 1;
+windowSize = 2;
 trainingSize = sampleSize-windowSize-1
 validationSize = 0;
 numDecliningPeriods = 0;
@@ -27,10 +29,8 @@ numDecliningPeriods = 0;
 allPredictedChanges = [];
 allPredictedAnfisChanges = [];
 for index=1:size(allPrices,1)-windowSize-sampleSize-2
-    index
+    %index
     priceChanges = allPriceChanges(index:sampleSize+index-1, :);
-    a = allPrices(2:end,:);
-    prices = a(index:sampleSize+index-1, :);
     
     normalizedOffset = (max(priceChanges) - min(priceChanges)) / 2 + min(priceChanges);
     normalizedPriceChanges = priceChanges;
@@ -59,8 +59,8 @@ for index=1:size(allPrices,1)-windowSize-sampleSize-2
     
     perceptron = MultilayerPerceptron();
     perceptron.plottingEnabled = false;
-    perceptron.iterations = 100;
-    perceptron.hiddenNodes = 10;
+    perceptron.iterations = 20;
+    perceptron.hiddenNodes = 4;
     perceptron.eta = 0.01;
     
     trainingInput = patterns(:, 1:(trainingSize-validationSize));
@@ -74,53 +74,81 @@ for index=1:size(allPrices,1)-windowSize-sampleSize-2
     
     
     %fis = anfis([trainingInput' trainingOutput'], [], [], [0 0 0 0], [], 1);
-    fis = genfis1([trainingInput' trainingOutput'])
+    %fis = genfis1([trainingInput' trainingOutput'])
     
     perceptron.validationPatterns = validationInput;
     perceptron.validationTargets = validationOutput;
     perceptron.train(trainingInput, trainingOutput);
     %predictedChanges = perceptron.recall(testInput)' * normalizedScalar(priceIndex) + normalizedOffset(priceIndex);
     allPredictedChanges = [allPredictedChanges; perceptron.recall(testInput)' * normalizedScalar(priceIndex) + normalizedOffset(priceIndex)];
-    allPredictedAnfisChanges = [allPredictedAnfisChanges; evalfis(testInput,fis)' * normalizedScalar(priceIndex) + normalizedOffset(priceIndex)];
+    %allPredictedAnfisChanges = [allPredictedAnfisChanges; evalfis(testInput,fis)' * normalizedScalar(priceIndex) + normalizedOffset(priceIndex)];
 end
 allBeforeRealPrices = allPrices(end-length(allPredictedChanges):end-1, priceIndex);
 allRealPrices = allPrices(end-length(allPredictedChanges)+1:end, priceIndex);
 allPredictedPrices = allPredictedChanges .* allBeforeRealPrices;
-allPredictedAnfisPrices = allPredictedAnfisChanges .* allBeforeRealPrices;
+%allPredictedAnfisPrices = allPredictedAnfisChanges .* allBeforeRealPrices;
 
-plot([allRealPrices allPredictedPrices allPredictedAnfisPrices])
+plot([allRealPrices allPredictedPrices])
 legend('Real', 'MLP', 'ANFIS')
 
-meanPercentageError = @(v) sum(abs(allRealPrices - v) ./ allRealPrices) / length(allRealPrices)*100;
-
+meanAbsolutePercentageError = @(v) sum(abs(allRealPrices - v) ./ allRealPrices) / length(allRealPrices)*100;
+meanAbsoluteError = @(v) sum(abs(allRealPrices - v)) / length(allRealPrices)*100;
 
 winner = [0,0,0,0];
-totalWinnings = [0,0,0,0];
+totalWinnings = [1,1,1,1];
 winnerDuringDecline = [0,0,0,0];
 totalWinningsDuringDecline = [0,0,0,0];
 
-periodSize = 30;
+periodSize = 90;
 periodPredictedPrices = reshape(allPredictedPrices(1:length(allPredictedPrices)-mod(length(allPredictedPrices),periodSize)), periodSize, floor(length(allPredictedPrices) / periodSize));
 periodPrices = reshape(allRealPrices(1:length(allRealPrices)-mod(length(allRealPrices),periodSize)), periodSize, floor(length(allRealPrices) / periodSize));
-periodAnfisPrices = reshape(allPredictedAnfisPrices(1:length(allPredictedAnfisPrices)-mod(length(allPredictedAnfisPrices),periodSize)), periodSize, floor(length(allPredictedAnfisPrices) / periodSize));
+%periodAnfisPrices = reshape(allPredictedAnfisPrices(1:length(allPredictedAnfisPrices)-mod(length(allPredictedAnfisPrices),periodSize)), periodSize, floor(length(allPredictedAnfisPrices) / periodSize));
 
 
 for period=1:size(periodPredictedPrices,2)
     realPrices = periodPrices(:, period);
     predictedPrices = periodPredictedPrices(:, period);
-    predictedAnfisPrices = periodAnfisPrices(:, period);
-    prices = [predictedPrices predictedAnfisPrices predictedAnfisPrices];
+    %predictedAnfisPrices = periodAnfisPrices(:, period);
+    prices = [predictedPrices];
     bestMethods = [4];
     indexes = 1:length(realPrices)-1;
     growingIndexes = @(p) indexes(p(indexes+1)' > p(indexes)');
     calculateCash = @(predictedPrices) prod(realPrices(growingIndexes(predictedPrices)+1) ./ realPrices(growingIndexes(predictedPrices)));
+    calculateCash = @(predictedPrices) prod(realPrices(growingIndexes(predictedPrices)+1) ./ realPrices(growingIndexes(predictedPrices)));
     
     randomCash = realPrices(end) / realPrices(1);
     greatestCash = randomCash;
-    totalWinnings(4) = totalWinnings(4) + randomCash;
+    totalWinnings(4) = totalWinnings(4) * randomCash;
     for i=1:size(prices,2)
-        cash = calculateCash(prices(:, i));
-        totalWinnings(i) = totalWinnings(i) + cash;
+        p = prices(:, i);
+        cash = 1;
+        predictedCash = 1;
+        isIn = true;
+        for j=2:length(p)
+            if p(j) >= realPrices(j-1)
+                trans = predictedCash * 0.000;
+                if ~isIn
+                    predictedCash = predictedCash - trans;
+                end
+                predictedCash = predictedCash * realPrices(j) / realPrices(j-1);
+                isIn = true;
+            else
+                isIn = false;
+            end
+        end
+        cash = predictedCash;
+        totalWinnings(i) = totalWinnings(i) * cash;
+        
+        
+        predictedCash = 1;
+        
+        for j=2:length(prices(:, i))
+            if prices(j, i) >= realPrices(j-1)
+                predictedCash = predictedCash * realPrices(j) / realPrices(j-1);
+            end
+        end
+        totalWinningsNew(i) = totalWinningsNew(i) + predictedCash;
+        
         if randomCash < 1
             totalWinningsDuringDecline(i) = totalWinningsDuringDecline(i) + cash;
         end
@@ -143,14 +171,49 @@ winner
 winnings = totalWinnings / size(periodPrices,2)
 winnerDuringDecline
 winningsDuringDecline = totalWinningsDuringDecline
-mlpMpe = meanPercentageError(allPredictedPrices)
-anfisMpe = meanPercentageError(allPredictedAnfisPrices)
-naiveMpe = meanPercentageError(allBeforeRealPrices)
+mlpMpe = meanAbsolutePercentageError(allPredictedPrices)
 
-dirCor = @(p) sum(((allRealPrices(2:end) ./ allRealPrices(1:end-1) - 1) .* (p(2:end) ./ p(1:end-1) - 1) > 0)) / (length(allRealPrices)-1)
+%anfisMpe = meanAbsolutePercentageError(allPredictedAnfisPrices)
+naiveMpe = meanAbsolutePercentageError(allBeforeRealPrices);
 
-
-sum(((allRealPrices(2:end) ./ allBeforeRealPrices(2:end) - 1) .* (allPredictedPrices(2:end) ./ allPredictedPrices(1:end-1) - 1) > 0)) / (length(allRealPrices)-1)
+dirCor = @(p) sum(((allRealPrices(2:end) ./ allRealPrices(1:end-1) - 1) .* (p(2:end) ./ p(1:end-1) - 1) > 0)) / (length(allRealPrices)-1);
 
 
-plot([allRealPrices allPredictedPrices])
+sum(((allRealPrices(2:end) ./ allBeforeRealPrices(2:end) - 1) .* (allPredictedPrices(2:end) ./ allPredictedPrices(1:end-1) - 1) > 0)) / (length(allRealPrices)-1);
+
+
+% New way of predicting cash - can add transaction cost!
+predictedCash = 1;
+isIn = true;
+for i=2:length(allPredictedPrices)
+    if allPredictedPrices(i) >= allRealPrices(i-1)
+        trans = predictedCash * 0.000;
+        if ~isIn
+            predictedCash = predictedCash - trans;
+        end
+        predictedCash = predictedCash * allRealPrices(i) / allRealPrices(i-1);
+        isIn = true;
+    else
+        isIn = false;
+    end
+end
+predictedCash
+
+
+% Old way of predicting cash
+predictedCash2 = 1;
+for i=2:length(allPredictedPrices)
+    if allPredictedPrices(i) >= allPredictedPrices(i-1)
+        predictedCash2 = predictedCash2 * allRealPrices(i) / allRealPrices(i-1);
+    end
+end
+predictedCash2
+
+
+naiveCash = allRealPrices(end) / allRealPrices(1)
+
+
+indexes = 1:length(allRealPrices)-1;
+growingIndexes = @(p) indexes(p(indexes+1)' > p(indexes)');
+calculateCash = @(predictedPrices) prod(allRealPrices(growingIndexes(predictedPrices)+1) ./ allRealPrices(growingIndexes(predictedPrices)));
+oldCash = calculateCash(allPredictedPrices)
