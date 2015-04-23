@@ -1,10 +1,10 @@
 clear all;
 
 % Open	High	Low	Close	Volume
-allPrices = csvread('hsi.csv');
+allPrices = csvread('hsi40.csv');
 allPrices = allPrices(1:end, :);
 % Move closing price to first index so we won't need to change price index
-allPrices = [allPrices(:, 4), allPrices(:, 1:3), allPrices(:, 5:end)];
+allPrices = [allPrices(:, 4), allPrices(:, 1:3)];
 
 % Reverse prices so they are in correct order
 allPrices = allPrices(end:-1:1, :);
@@ -18,10 +18,10 @@ totalWinningsNew = [0,0,0,0,0];
 winnerDuringDecline = [0,0,0,0,0];
 totalWinningsDuringDecline = [0,0,0,0,0];
 %sampleSize = floor(length(allPrices) / 10)
-sampleSize = 30
+sampleSize = 100
 
 %sampleSize = 300;
-windowSize = 3;
+windowSize = 1;
 trainingSize = sampleSize-windowSize-1
 validationSize = 0;
 numDecliningPeriods = 0;
@@ -60,8 +60,8 @@ for index=1:size(allPrices,1)-windowSize-sampleSize-2
     perceptron = MultilayerPerceptron();
     perceptron.plottingEnabled = false;
     perceptron.iterations = 30;
-    perceptron.hiddenNodes = 3;
-    perceptron.eta = 0.05;
+    perceptron.hiddenNodes = 5;
+    perceptron.eta = 0.01;
     
     trainingInput = patterns(:, 1:(trainingSize-validationSize));
     trainingOutput = targets(:, 1:(trainingSize-validationSize));
@@ -74,25 +74,28 @@ for index=1:size(allPrices,1)-windowSize-sampleSize-2
     
     
     %fis = anfis([trainingInput' trainingOutput'], [], [], [0 0 0 0], [], 1);
-    %fis = genfis1([trainingInput' trainingOutput'])
+    fis = genfis1([trainingInput' trainingOutput'])
     
     perceptron.validationPatterns = validationInput;
     perceptron.validationTargets = validationOutput;
     perceptron.train(trainingInput, trainingOutput);
     %predictedChanges = perceptron.recall(testInput)' * normalizedScalar(priceIndex) + normalizedOffset(priceIndex);
+    
+    assert(~isnan(perceptron.recall(testInput)'))
+    
     allPredictedChanges = [allPredictedChanges; perceptron.recall(testInput)' * normalizedScalar(priceIndex) + normalizedOffset(priceIndex)];
-    %allPredictedAnfisChanges = [allPredictedAnfisChanges; evalfis(testInput,fis)' * normalizedScalar(priceIndex) + normalizedOffset(priceIndex)];
+    allPredictedAnfisChanges = [allPredictedAnfisChanges; evalfis(testInput,fis)' * normalizedScalar(priceIndex) + normalizedOffset(priceIndex)];
 end
 allBeforeRealPrices = allPrices(end-length(allPredictedChanges):end-1, priceIndex);
 allRealPrices = allPrices(end-length(allPredictedChanges)+1:end, priceIndex);
 allPredictedPrices = allPredictedChanges .* allBeforeRealPrices;
-%allPredictedAnfisPrices = allPredictedAnfisChanges .* allBeforeRealPrices;
+allPredictedAnfisPrices = allPredictedAnfisChanges .* allBeforeRealPrices;
 
 plot([allRealPrices allPredictedPrices])
 legend('Real', 'MLP', 'ANFIS')
 
-meanAbsolutePercentageError = @(v) sum(abs(allRealPrices - v) ./ allRealPrices) / length(allRealPrices)*100;
-meanAbsoluteError = @(v) sum(abs(allRealPrices - v)) / length(allRealPrices)*100;
+mape = @(v) sum(abs(allRealPrices - v) ./ allRealPrices) / length(allRealPrices)*100;
+mae = @(v) sum(abs(allRealPrices - v)) / length(allRealPrices);
 
 winner = [0,0,0,0];
 totalWinnings = [1,1,1,1];
@@ -102,14 +105,14 @@ totalWinningsDuringDecline = [0,0,0,0];
 periodSize = 90;
 periodPredictedPrices = reshape(allPredictedPrices(1:length(allPredictedPrices)-mod(length(allPredictedPrices),periodSize)), periodSize, floor(length(allPredictedPrices) / periodSize));
 periodPrices = reshape(allRealPrices(1:length(allRealPrices)-mod(length(allRealPrices),periodSize)), periodSize, floor(length(allRealPrices) / periodSize));
-%periodAnfisPrices = reshape(allPredictedAnfisPrices(1:length(allPredictedAnfisPrices)-mod(length(allPredictedAnfisPrices),periodSize)), periodSize, floor(length(allPredictedAnfisPrices) / periodSize));
+periodAnfisPrices = reshape(allPredictedAnfisPrices(1:length(allPredictedAnfisPrices)-mod(length(allPredictedAnfisPrices),periodSize)), periodSize, floor(length(allPredictedAnfisPrices) / periodSize));
 
 
 for period=1:size(periodPredictedPrices,2)
     realPrices = periodPrices(:, period);
     predictedPrices = periodPredictedPrices(:, period);
-    %predictedAnfisPrices = periodAnfisPrices(:, period);
-    prices = [predictedPrices];
+    predictedAnfisPrices = periodAnfisPrices(:, period);
+    prices = [predictedPrices predictedAnfisPrices];
     bestMethods = [4];
     indexes = 1:length(realPrices)-1;
     growingIndexes = @(p) indexes(p(indexes+1)' > p(indexes)');
@@ -119,7 +122,7 @@ for period=1:size(periodPredictedPrices,2)
     totalWinnings(4) = totalWinnings(4) * randomCash;
     for i=1:size(prices,2)
         p = prices(:, i);
-        money = trade(realPrices, predictedPrices, 0.12/100, 0.96);
+        money = trade(realPrices, predictedPrices, 0, 1);
         totalWinnings(i) = totalWinnings(i) * money;
         if randomCash < 1
             totalWinningsDuringDecline(i) = totalWinningsDuringDecline(i) + money;
@@ -143,10 +146,6 @@ winner
 winnings = totalWinnings / size(periodPrices,2)
 winnerDuringDecline
 winningsDuringDecline = totalWinningsDuringDecline
-mlpMpe = meanAbsolutePercentageError(allPredictedPrices)
-
-%anfisMpe = meanAbsolutePercentageError(allPredictedAnfisPrices)
-naiveMpe = meanAbsolutePercentageError(allBeforeRealPrices);
 
 dirCor = @(p) sum(((allRealPrices(2:end) ./ allRealPrices(1:end-1) - 1) .* (p(2:end) ./ p(1:end-1) - 1) > 0)) / (length(allRealPrices)-1);
 sum(((allRealPrices(2:end) ./ allBeforeRealPrices(2:end) - 1) .* (allPredictedPrices(2:end) ./ allPredictedPrices(1:end-1) - 1) > 0)) / (length(allRealPrices)-1);
@@ -157,11 +156,13 @@ sum(((allRealPrices(2:end) ./ allBeforeRealPrices(2:end) - 1) .* (allPredictedPr
 predictedCashWithTransactionCost
 predictedCashWithoutTransationCost = trade(allRealPrices, allPredictedPrices, 0, 0.96)
 
-
+assert(sum(isnan(allRealPrices)) == 0);
+assert(sum(isnan(allPredictedPrices)) == 0);
 % S&P: 1.5641, FTSE: 2.4900, HSI: 1.9061
 
 naiveCash = allRealPrices(end) / allRealPrices(1)
 
+hold off
 x = 0.85:0.0001:1;
 y = arrayfun(@(x) trade(allRealPrices, allPredictedPrices, 0.12/100, x), x);
 plot(x, y, 'b')
@@ -173,19 +174,56 @@ growingIndexes = @(p) indexes(p(indexes+1)' > p(indexes)');
 calculateCash = @(predictedPrices) prod(allRealPrices(growingIndexes(predictedPrices)+1) ./ allRealPrices(growingIndexes(predictedPrices)));
 oldCash = calculateCash(allPredictedPrices)
 
+% (1 - sum(allRealPrices ./ allBeforeRealPrices - 1 > 0) / length(allRealPrices))^5 * 100
+% 
+% plot(allRealPrices); hold on
+% [predictedCashWithTransactionCost, transactions] = trade(allRealPrices, allPredictedPrices, 0.12/100, 0.97);
+% line = [transactions(1)];
+% for i = 2:length(transactions)
+%     if transactions(i) == transactions(i-1) + 1
+%         line = [line; transactions(i)];
+%     else
+%         plot(line, allRealPrices(line), 'r')
+%         line = [transactions(i)];
+%     end
+% end
+% hold off
+% legend('Money out', 'Money in')
 
-(1 - sum(allRealPrices ./ allBeforeRealPrices - 1 > 0) / length(allRealPrices))^5 * 100
+maePerceptron = mae(allPredictedPrices)
+maeNaive = mae(allBeforeRealPrices)
+maeAnfis = mae(allPredictedAnfisPrices)
 
-plot(allRealPrices); hold on
-[predictedCashWithTransactionCost, transactions] = trade(allRealPrices, allPredictedPrices, 0.12/100, 0.97);
-line = [transactions(1)];
-for i = 2:length(transactions)
-    if transactions(i) == transactions(i-1) + 1
-        line = [line; transactions(i)];
-    else
-        plot(line, allRealPrices(line), 'r')
-        line = [transactions(i)];
-    end
-end
-hold off
-legend('Money out', 'Money in')
+
+mapePerceptron = mape(allPredictedPrices)
+mapeNaive = mape(allBeforeRealPrices)
+mapeAnfis = mape(allPredictedAnfisPrices)
+
+
+moneyPerceptronFees = trade(allRealPrices, allPredictedPrices, 0.12/100, 0.96)
+moneyPerceptronNoFees = trade(allRealPrices, allPredictedPrices, 0, 1)
+
+moneyAnfisFees = trade(allRealPrices, allPredictedAnfisPrices, 0.12/100, 0.96)
+moneyAnfisNoFees = trade(allRealPrices, allPredictedAnfisPrices, 0, 1)
+
+figure;
+
+
+allPrices = csvread('ftse100.csv');
+allPrices = allPrices(1:end, :);
+allPrices = [allPrices(:, 4)];
+allPrices = allPrices(end:-1:1, :);
+
+figure;
+plot(allRealPrices, 'b')
+ylabel('Price per share')
+xlabel('Day')
+
+figure;
+plot(allPredictedPrices, 'r')
+ylabel('Price per share')
+xlabel('Day')
+
+lim = 30; plot(periodPrices(1:lim, 1), 'b'); hold on; plot(periodPredictedPrices(1:lim, 1), 'r'); hold off;
+ylabel('Price per share')
+xlabel('Day')
