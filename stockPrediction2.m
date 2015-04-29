@@ -2,13 +2,13 @@ clear all;
 
 % Open	High	Low	Close	Volume
 allPrices = csvread('hsi40.csv');
-allPrices = allPrices(1:end, :);
+allPrices = allPrices(1:end/10+300, :);
 % Move closing price to first index so we won't need to change price index
 allPrices = [allPrices(:, 4), allPrices(:, 1:3)];
 
 % Reverse prices so they are in correct order
 allPrices = allPrices(end:-1:1, :);
-allPriceChanges = allPrices(2:end,:) ./ allPrices(1:end-1,:);
+allPriceChanges = [allPrices(2:end,:) ./ allPrices(1:end-1,:) allPrices(1:end-1,:)];
 
 priceIndex = 1;
 winner = [0,0,0,0, 0];
@@ -18,10 +18,10 @@ totalWinningsNew = [0,0,0,0,0];
 winnerDuringDecline = [0,0,0,0,0];
 totalWinningsDuringDecline = [0,0,0,0,0];
 %sampleSize = floor(length(allPrices) / 10)
-sampleSize = 100
+sampleSize = 100;
 
 %sampleSize = 300;
-windowSize = 1;
+windowSize = 3;
 trainingSize = sampleSize-windowSize-1
 validationSize = 0;
 numDecliningPeriods = 0;
@@ -37,7 +37,7 @@ for index=1:size(allPrices,1)-windowSize-sampleSize-2
     for i = 1:size(priceChanges,2)
         normalizedPriceChanges(:, i) = normalizedPriceChanges(:, i) - normalizedOffset(i);
     end
-    normalizedScalar = max(normalizedPriceChanges);
+    normalizedScalar = max(normalizedPriceChanges) ;
     for i = 1:size(priceChanges,2)
         normalizedPriceChanges(:, i) = normalizedPriceChanges(:, i) / normalizedScalar(i);
     end
@@ -59,8 +59,8 @@ for index=1:size(allPrices,1)-windowSize-sampleSize-2
     
     perceptron = MultilayerPerceptron();
     perceptron.plottingEnabled = false;
-    perceptron.iterations = 30;
-    perceptron.hiddenNodes = 5;
+    perceptron.iterations = 50;
+    perceptron.hiddenNodes = 6;
     perceptron.eta = 0.01;
     
     trainingInput = patterns(:, 1:(trainingSize-validationSize));
@@ -74,7 +74,7 @@ for index=1:size(allPrices,1)-windowSize-sampleSize-2
     
     
     %fis = anfis([trainingInput' trainingOutput'], [], [], [0 0 0 0], [], 1);
-    fis = genfis1([trainingInput' trainingOutput'])
+    %fis = genfis1([trainingInput' trainingOutput'])
     
     perceptron.validationPatterns = validationInput;
     perceptron.validationTargets = validationOutput;
@@ -84,7 +84,8 @@ for index=1:size(allPrices,1)-windowSize-sampleSize-2
     assert(~isnan(perceptron.recall(testInput)'))
     
     allPredictedChanges = [allPredictedChanges; perceptron.recall(testInput)' * normalizedScalar(priceIndex) + normalizedOffset(priceIndex)];
-    allPredictedAnfisChanges = [allPredictedAnfisChanges; evalfis(testInput,fis)' * normalizedScalar(priceIndex) + normalizedOffset(priceIndex)];
+    %allPredictedAnfisChanges = [allPredictedAnfisChanges; evalfis(testInput,fis)' * normalizedScalar(priceIndex) + normalizedOffset(priceIndex)];
+    allPredictedAnfisChanges = [allPredictedAnfisChanges; 0 ];
 end
 allBeforeRealPrices = allPrices(end-length(allPredictedChanges):end-1, priceIndex);
 allRealPrices = allPrices(end-length(allPredictedChanges)+1:end, priceIndex);
@@ -95,7 +96,10 @@ plot([allRealPrices allPredictedPrices])
 legend('Real', 'MLP', 'ANFIS')
 
 mape = @(v) sum(abs(allRealPrices - v) ./ allRealPrices) / length(allRealPrices)*100;
+smape = @(v) sum(abs(allRealPrices - v) ./ ((abs(v) + abs(allRealPrices)) / 2)) / length(allRealPrices)*100;
+
 mae = @(v) sum(abs(allRealPrices - v)) / length(allRealPrices);
+
 
 winner = [0,0,0,0];
 totalWinnings = [1,1,1,1];
@@ -202,9 +206,9 @@ mapeAnfis = mape(allPredictedAnfisPrices)
 
 moneyPerceptronFees = trade(allRealPrices, allPredictedPrices, 0.12/100, 0.96)
 moneyPerceptronNoFees = trade(allRealPrices, allPredictedPrices, 0, 1)
-
 moneyAnfisFees = trade(allRealPrices, allPredictedAnfisPrices, 0.12/100, 0.96)
 moneyAnfisNoFees = trade(allRealPrices, allPredictedAnfisPrices, 0, 1)
+naiveCash = allRealPrices(end) / allRealPrices(1)
 
 figure;
 
