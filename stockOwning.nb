@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[    127491,       3261]
-NotebookOptionsPosition[    125481,       3194]
-NotebookOutlinePosition[    125842,       3210]
-CellTagsIndexPosition[    125799,       3207]
+NotebookDataLength[     84531,       1900]
+NotebookOptionsPosition[     82884,       1845]
+NotebookOutlinePosition[     83243,       1861]
+CellTagsIndexPosition[     83200,       1858]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -22,19 +22,21 @@ Notebook[{
 Cell[CellGroupData[{
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"stockPrices", " ", "=", " ", 
-   RowBox[{
-    RowBox[{"FinancialData", "[", 
-     RowBox[{"\"\<^HSI\>\"", ",", 
-      RowBox[{"{", 
-       RowBox[{
-        RowBox[{"DateObject", "[", 
-         RowBox[{"{", 
-          RowBox[{"2015", ",", "1", ",", "1"}], "}"}], "]"}], ",", 
-        RowBox[{"DateObject", "[", 
-         RowBox[{"{", 
-          RowBox[{"2015", ",", "4", ",", "1"}], "}"}], "]"}]}], "}"}]}], 
-     "]"}], "[", 
+  RowBox[{"stockData", " ", "=", "  ", 
+   RowBox[{"FinancialData", "[", 
+    RowBox[{"\"\<^FTSE\>\"", ",", 
+     RowBox[{"{", 
+      RowBox[{
+       RowBox[{"DateObject", "[", 
+        RowBox[{"{", 
+         RowBox[{"2005", ",", "1", ",", "1"}], "}"}], "]"}], ",", 
+       RowBox[{"DateObject", "[", 
+        RowBox[{"{", 
+         RowBox[{"2006", ",", "10", ",", "1"}], "}"}], "]"}]}], "}"}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"stockPrices", " ", "=", 
+   RowBox[{"stockData", "[", 
     RowBox[{"[", 
      RowBox[{"All", ",", " ", "2"}], "]"}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
@@ -60,9 +62,7 @@ Cell[BoxData[{
    RowBox[{
     RowBox[{"{", "stockPrices", "}"}], ",", 
     RowBox[{"PlotLegends", "\[Rule]", 
-     RowBox[{"{", "\"\<HSI\>\"", "}"}]}]}], "]"}]}], "\[IndentingNewLine]", 
- RowBox[{"Export", "[", 
-  RowBox[{"\"\<plot.png\>\"", ",", " ", "plot"}], "]"}]}], "Input",
+     RowBox[{"{", "\"\<HSI\>\"", "}"}]}]}], "]"}]}]}], "Input",
  CellChangeTimes->{{3.6327429749183187`*^9, 3.632743020241493*^9}, {
    3.6327430626191893`*^9, 3.632743090887294*^9}, {3.6327431696368628`*^9, 
    3.632743265307125*^9}, {3.632818908440407*^9, 3.632818918693774*^9}, {
@@ -119,9 +119,20 @@ Cell[BoxData[{
    3.639314909336363*^9}, {3.639314953654141*^9, 3.639314956665535*^9}, {
    3.639315354084749*^9, 3.639315354629163*^9}, {3.639315407423287*^9, 
    3.63931540794461*^9}, {3.6393265300277033`*^9, 3.639326533756289*^9}, {
-   3.639327591228373*^9, 3.639327612125977*^9}}],
+   3.639327591228373*^9, 3.639327612125977*^9}, {3.6393289832237*^9, 
+   3.639328984894271*^9}, {3.6393291692191896`*^9, 3.6393291731816273`*^9}, {
+   3.639330745722433*^9, 3.6393307512365913`*^9}, {3.6393314260701113`*^9, 
+   3.639331426218782*^9}, {3.639333165317617*^9, 3.6393331790991287`*^9}, {
+   3.6393841585739393`*^9, 3.639384158670869*^9}, {3.639384191285946*^9, 
+   3.639384212235729*^9}, {3.639384253503276*^9, 3.639384272855797*^9}, {
+   3.639384312477126*^9, 3.6393843510229177`*^9}, {3.639384933549797*^9, 
+   3.639384933607205*^9}, {3.639385049139201*^9, 3.63938506048569*^9}, {
+   3.6393852832213287`*^9, 3.639385294090139*^9}, {3.639385345207466*^9, 
+   3.639385345299693*^9}, {3.639387573866659*^9, 3.639387574598542*^9}, {
+   3.6393876445085583`*^9, 3.639387644927718*^9}, {3.6394211316036463`*^9, 
+   3.639421135230335*^9}, {3.639422934845027*^9, 3.639422935280756*^9}}],
 
-Cell[BoxData["62"], "Output",
+Cell[BoxData["455"], "Output",
  CellChangeTimes->{{3.639301859665298*^9, 3.6393018644901037`*^9}, {
    3.639301974190961*^9, 3.639301996256754*^9}, {3.6393023760163403`*^9, 
    3.639302420215407*^9}, 3.639302483755946*^9, {3.6393025260405693`*^9, 
@@ -139,43 +150,94 @@ Cell[BoxData["62"], "Output",
    3.639314508542508*^9, 3.63931461164961*^9}, {3.639314738314741*^9, 
    3.639314820501873*^9}, 3.63931486032609*^9, {3.639314895458346*^9, 
    3.6393149212846527`*^9}, 3.639315408821526*^9, 3.6393265358066196`*^9, {
-   3.639327596082115*^9, 3.639327612621426*^9}}],
+   3.639327596082115*^9, 3.639327612621426*^9}, 3.639328985670515*^9, 
+   3.639329173929081*^9, 3.6393294876239243`*^9, {3.63933074745725*^9, 
+   3.63933075162836*^9}, 3.639330987250695*^9, 3.639331426853785*^9, {
+   3.63933317591182*^9, 3.6393331795865993`*^9}, {3.639384152511649*^9, 
+   3.6393841592874403`*^9}, {3.6393841927260323`*^9, 3.639384206807643*^9}, {
+   3.639384257319615*^9, 3.639384283778561*^9}, {3.639384330876401*^9, 
+   3.6393843513619223`*^9}, {3.639384461580447*^9, 3.639384469401099*^9}, 
+   3.639384601823175*^9, 3.639384684731182*^9, 3.6393849348798733`*^9, {
+   3.639385052852964*^9, 3.63938506150224*^9}, 3.639385296622424*^9, 
+   3.639385345834155*^9, 3.639387419106512*^9, 3.6393875212821417`*^9, 
+   3.639387575327758*^9, 3.639387645529807*^9, 3.639414968465369*^9, 
+   3.6394210874994287`*^9, 3.639421135863529*^9, 3.6394229361257133`*^9}],
 
 Cell[BoxData[
  TemplateBox[{GraphicsBox[{{}, {{{}, {}, {
         Hue[0.67, 0.6, 0.6], 
         Directive[
-         PointSize[0.016666666666666666`], 
+         PointSize[0.011111111111111112`], 
          RGBColor[0.368417, 0.506779, 0.709798], 
          AbsoluteThickness[1.6]], 
         LineBox[CompressedData["
-1:eJw9kz1IglEUhiUiGhsaKoIsSsrESu3HSr3+/xslFNEiRa4NQtAS3xQE0tL0
-NTk5tTW1RFM15FSUbg0FRdD/UlN63u/1ghye77nn3HMP1/71raXNFpPJ5K3/
-GhHrw+esr0LqXhkfVIOzVnK7OtJ1ffX9zuAOeDN9p8SHCLlL9v+ukXsllrbJ
-ZsQyeUDl68tSJA9K/ukl2YL6++Rh1LOTrapyXV8bZBvqXZHtwuUv8rjU10NV
-gyeEd7Jkh9zvxk12CheiZJfwdyt5UupfvLH+lPRjeyFPy/6TP/IM8ruZ75aY
-GyPPSj+1pp+TqJr9z8t5bT9kj8TzM7JXzi/WyD7Mq4f1FHjIYE3JeW4XvR/1
-Fb1f+nX66QPi90bpA+IPHfRB+EX6IObpoQ/hfmn6EObTRx/Ge3s0+tfCuH+J
-94kg6vQRzP+APor9y/RgbYQ+BvbQx/B+gvRxqZfne9LiEnMr9AnMh+dpCczv
-iT6JehX6JOb9Sp/C/+OWHuz+pE9L/vEzPbjYfE8Z3DfM+WWQz3mbFjDP3ar6
-B2uU/BY=
+1:eJxdmHtslfUdxl+MmZotW+OIs5PNo1FExqBaBCcKRxG5HaAthXJrOS30tKW3
+0/sFmG/QDaNzgmxmFZdVXcjcWFZ3ABOyzQM4jNsJ65R5gV2ObumWGbHKxenc
+JevzfM7Swz+/PDzf5/t8n9/v/b1vc66paS2rvSgIghcnBMH/Vv0bnVex/tnn
+Yyd+GvV/aH0XfKnW4+CC6Fj96+CJ0fKyGwYLL4CvjD7z/eXR1N/Ak4RfBkfG
+6gd+Ar5W/dLg68Zw5iR4svRnwFOi+3/8+saR18BTpc/1nyZ9rt908cfARWNr
+mAHfNNa/+G3wzcqTy1885pc4D56p/lnwLep/DjxL/aamjGcLzwTfqvpp4K9o
+nmXg29S/AzxH/H3g2zXPV8F3aH0APFd+B8Dz1O9ZcFT7d9Q4jKr+5/B3qv8R
++DvFg4O71O8F+LvU7wfw8zXvNvj52s8m+Lul/yb83aqvh18gTJ5wgepD+HuE
+H4MXju2HX6h5n4ZfqPkehV+kee6HN66BXyzcDb9Yayv8EvXPzbdEz/Ni+KXS
+3wa/VPPNgY8p3wL4mPicfpn2fzr8MtXTL1g+Hod5OFihdTb8Ct2f6+BL1P+L
+xtESrTdTX6L6iHFa9SPL0ZdKvxJ9qdY29KXS96AvVb5m9GXavzL0ZTrPOPoy
+9S9FX6b9vQr9Su3vad+3qPDAB8bhSq2vGqfNv8L9LNc876EvV74A/3Lt5zvo
+xScOol+l+Q+hF04dwT8Pp1fJ71/oV6v/5eRfLX4y/qs1zyzym+d5CCo0zyT0
+xp9EX6H6L6CvkN8V6Ndo/ono14i/Fv0a9VuFXvWp3P1Yq/NqRG+8Hf1a9eP+
+pI2pD9Yp3w706zRvP/o8nF6ndTP69Vr3oDd+GP16zb8TvXEn+g3q/yT6Dcr3
+EHrh4t3oN0i/D32l8GH0lcp/CH2l8u5FLxwcRF+l5/F36Ku0DqMXX3gKfZXm
+fRv9Rvl/hH6j1tfQC4cp9K5/C31c/c8bR+LK+yH94lpvPKA1Hpd/1Di0/h7j
+QeGBZuO06ycbZ90/aRxUa55+40i1+GrjqPiR7fhX+3zwN9+Cv/VV+FdrnlL8
+zW/Ev0Z8Lf41Or8+/Gvk9xj+NX7f42/9I/hLH6M+bfwU/jWa94f4b9L5/Ab/
+Tao/ib/5Y/iLzxzF3/VZ/Ddp3rP4Wz/hoP03ad4z+G9Wvzfx36x89Itu1vn8
+Cn/xqf34Sx/7Nv6b1T+Nv/XHye/+B/CvFd6Lv3BqJ/61/nsB/zwc1mp+6gdr
+tb9D+Ncq/zD+5k/gn5D+DfwTmudd/BOqP4+/63+Pv3CM+sGE5vsP/gmtp/BX
+v8Sf8a/TfJf4fCJ18rvaOFqn/bjFOC4+McU4NP8h/saXmU/X6Tyu5/yFC5cZ
+B/WafyH+wplu/Ou1Hwn8hVO1+Ner/3bjwXrNhz7tfsX4m/+Y/A3yf5/9b1C/
+f7P/DfK7GH/h4j+y/8a7yd+glecpLRzuY/8btL/c12CL8Az8t2h/puFvfAXn
+LzxQgb/5ufhv8fcQf2P4rPwSlfg3Kv8v8W8cf5+jjePva7xR885m/83PYP+l
+z5Sz/64HZ83P4/ybtD/oI03Ks5bzFx9Usf/iB9CH5mfhb5zzb5J/P/7Gffg3
+6/wexl84tRf/Zq078W/W/Hvwb9Z+8jwOur4Df/cnX7ZZ+VrwbxH+Dv4t6vd1
+/Fvk9xT+xtSH1jPvoPXkSbdof7kf2RbNcx/+rdLvxr9V59+Dv/gB+sfFZ57G
+v1X7+SP8hROv4N+q9Q/4C4en8U+OxwV5OJKU3wXjIuHYJw55PvPvmy/Jw3H3
+u8n1yaTylBmHSe3HHONd1m8yHrQePGT+VuN0Hj/sfnXGWfHBCuNR803GQZvW
++cYFbXr+rjaOCBffYVzU5vcv+YVHJhmXtGm+CcZx1y8if5vyryO/6x8nv/Ee
+8gvHQvJb/wz5zXeQ3/he8tv/G+R3/3byt+v5qyR/u/gh8pu/n/zt2u8nya/6
+2CD5zX+P/O3anxfI3679fJX8qg/+Sn7xqTfJL31ilPyuz5Dffn8hv/3Okj9v
+nlHnOUn+Dq0vkb9D/m+Rv0P7cdlzzt+heZgvKjxygPzGfyK/8WetT7pf1Djs
+0HnONd7V4e+z8aDqYw3GQ/ZvNU573jrjYdeDs8oX9hiPun/COOhU/beMCzp1
+PuXGEeHUDPKbX2gctf5e45JO5YkZx80/QH736yS/6gufIL/575Lf/IPk79Sa
+Ir9wGJJffpkk+Tv9PiZ/Hg66xuOCrvHzRLrU7yXyu/4I+bs07znyG79MfvUb
+OE7+Lv9eSv4urfvJb/+d5M/DQ8ZHyW99P/k13wjnmfU8vya/9exf0K353iB/
+t/IdI3+31sfJr/rCK8nfrTy/5fnvHn+/49KHX+L+2+8G7r/9Crn/0qee4Htm
+PJ37b//c9838l7n/npf7ns3Do8YTuf89Ot/13P8e9evi/vdo3tz7T7hwB/ff
++uvJLxxbQv4encdhz5tU/+LPkd/8OfO77PcI+d1/h/GQ+58lv/QJvu/Dnu8j
+vvf2+zz5e7ReQ/5e1c8kv/Ht5O+Vnu93Ua/82b+o6gc4n5LesfX/7/9ezcf7
+NWn8Mfld/0/OX36po7z/xQcX8fz3+vc5nn/jS3n+PR/v56zn4/sw6n5fI3+f
++KXk79O6gPx9mieX3/yj5O+T/4Pkd30F+c3n8osvPk3+Pv/+Qn71D2/k/lu/
+mvx9yjeF/MKZf/D8u9807r/0iRPkN57A/e/37/fk75f+MPn7NQ/7V9Qv/fPk
+d/3PyC9+5Az5jfl+JlU/wHmF7vcp3n/GnyF/v/brKvJb/2nya74g9/33PO9w
+/q6/QP48HGzVfvI8FRiz/5Gt6nc577+t/nuQ95/4gRre/+JTlbz/8/ol3Y+/
+L0LzH3D+wplTPP9btf+XkN/+F5PfmOdnWPUBOOv+3J9R93+R/Nuk/zvnL5zi
+fCLbpP8F52+8j/Pfpvzvcf7ChVPJ7/qV5BfOLHou+l+X2iic
          "]]}}}, {}}, {
     DisplayFunction -> Identity, PlotRangePadding -> {{
         Scaled[0.02], 
         Scaled[0.02]}, {
         Scaled[0.05], 
-        Scaled[0.05]}}, AxesOrigin -> {0, 23405.530000000002`}, 
-     PlotRange -> {{0., 62.}, {23485.4, 25082.8}}, DisplayFunction -> 
+        Scaled[0.05]}}, AxesOrigin -> {0, 4716.145095}, 
+     PlotRange -> {{0., 455.}, {4783.6001, 6132.7002}}, DisplayFunction -> 
      Identity, AspectRatio -> NCache[GoldenRatio^(-1), 0.6180339887498948], 
      Axes -> {True, True}, AxesLabel -> {None, None}, 
-     AxesOrigin -> {0, 23405.530000000002`}, DisplayFunction :> Identity, 
+     AxesOrigin -> {0, 4716.145095}, DisplayFunction :> Identity, 
      Frame -> {{False, False}, {False, False}}, 
      FrameLabel -> {{None, None}, {None, None}}, 
      FrameTicks -> {{Automatic, Automatic}, {Automatic, Automatic}}, 
      GridLines -> {None, None}, GridLinesStyle -> Directive[
        GrayLevel[0.5, 0.4]], Method -> {}, 
-     PlotRange -> {{0., 62.}, {23485.4, 25082.8}}, PlotRangeClipping -> True, 
-     PlotRangePadding -> {{
+     PlotRange -> {{0., 455.}, {4783.6001, 6132.7002}}, PlotRangeClipping -> 
+     True, PlotRangePadding -> {{
         Scaled[0.02], 
         Scaled[0.02]}, {
         Scaled[0.05], 
@@ -195,7 +257,7 @@ B2uU/BY=
                     Directive[
                     Opacity[0.3], 
                     GrayLevel[0]]], 
-                    PointSize[0.3], 
+                    PointSize[0.2], 
                     RGBColor[0.368417, 0.506779, 0.709798], 
                     AbsoluteThickness[1.6]], {
                     LineBox[{{0, 10}, {20, 10}}]}}, {
@@ -204,7 +266,7 @@ B2uU/BY=
                     Directive[
                     Opacity[0.3], 
                     GrayLevel[0]]], 
-                    PointSize[0.3], 
+                    PointSize[0.2], 
                     RGBColor[0.368417, 0.506779, 0.709798], 
                     AbsoluteThickness[1.6]], {}}}, AspectRatio -> Full, 
                     ImageSize -> {20, 10}, PlotRangePadding -> None, 
@@ -233,7 +295,7 @@ B2uU/BY=
            RowBox[{"{", 
              RowBox[{"Directive", "[", 
                RowBox[{
-                 RowBox[{"PointSize", "[", "0.016666666666666666`", "]"}], 
+                 RowBox[{"PointSize", "[", "0.011111111111111112`", "]"}], 
                  ",", 
                  InterpretationBox[
                   ButtonBox[
@@ -325,42 +387,37 @@ B2uU/BY=
    3.639314508542508*^9, 3.63931461164961*^9}, {3.639314738314741*^9, 
    3.639314820501873*^9}, 3.63931486032609*^9, {3.639314895458346*^9, 
    3.6393149212846527`*^9}, 3.639315408821526*^9, 3.6393265358066196`*^9, {
-   3.639327596082115*^9, 3.6393276127075*^9}}],
-
-Cell[BoxData["\<\"plot.png\"\>"], "Output",
- CellChangeTimes->{{3.639301859665298*^9, 3.6393018644901037`*^9}, {
-   3.639301974190961*^9, 3.639301996256754*^9}, {3.6393023760163403`*^9, 
-   3.639302420215407*^9}, 3.639302483755946*^9, {3.6393025260405693`*^9, 
-   3.639302535327207*^9}, {3.639302796962029*^9, 3.6393028502431602`*^9}, {
-   3.639302883715176*^9, 3.6393029207465963`*^9}, {3.6393029962237167`*^9, 
-   3.6393030064674883`*^9}, 3.639305450498335*^9, 3.639305523881008*^9, 
-   3.639306172522728*^9, 3.639306401186561*^9, 3.639307336064309*^9, 
-   3.639307377710259*^9, 3.6393074683025827`*^9, 3.6393075695251513`*^9, {
-   3.6393078235792627`*^9, 3.639307868045302*^9}, 3.6393085433113413`*^9, 
-   3.639308626388081*^9, 3.639308715309992*^9, 3.639308783536446*^9, {
-   3.639312677114149*^9, 3.639312683363263*^9}, {3.639313095786344*^9, 
-   3.6393131269114723`*^9}, 3.639313168699972*^9, 3.639313283766283*^9, 
-   3.6393133169335833`*^9, {3.639313421556841*^9, 3.639313441355784*^9}, 
-   3.639314130291254*^9, 3.639314162882523*^9, 3.639314196674416*^9, {
-   3.639314508542508*^9, 3.63931461164961*^9}, {3.639314738314741*^9, 
-   3.639314820501873*^9}, 3.63931486032609*^9, {3.639314895458346*^9, 
-   3.6393149212846527`*^9}, 3.639315408821526*^9, 3.6393265358066196`*^9, {
-   3.639327596082115*^9, 3.639327612863739*^9}}]
+   3.639327596082115*^9, 3.639327612621426*^9}, 3.639328985670515*^9, 
+   3.639329173929081*^9, 3.6393294876239243`*^9, {3.63933074745725*^9, 
+   3.63933075162836*^9}, 3.639330987250695*^9, 3.639331426853785*^9, {
+   3.63933317591182*^9, 3.6393331795865993`*^9}, {3.639384152511649*^9, 
+   3.6393841592874403`*^9}, {3.6393841927260323`*^9, 3.639384206807643*^9}, {
+   3.639384257319615*^9, 3.639384283778561*^9}, {3.639384330876401*^9, 
+   3.6393843513619223`*^9}, {3.639384461580447*^9, 3.639384469401099*^9}, 
+   3.639384601823175*^9, 3.639384684731182*^9, 3.6393849348798733`*^9, {
+   3.639385052852964*^9, 3.63938506150224*^9}, 3.639385296622424*^9, 
+   3.639385345834155*^9, 3.639387419106512*^9, 3.6393875212821417`*^9, 
+   3.639387575327758*^9, 3.639387645529807*^9, 3.639414968465369*^9, 
+   3.6394210874994287`*^9, 3.639421135863529*^9, 3.6394229361922703`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"sampleSize", " ", "=", " ", "20"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"sampleSize", "=", "40"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"windowSize", " ", "=", "1"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"windowSize", "=", "1"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{"methods", " ", "=", " ", 
   RowBox[{"{", 
    RowBox[{
    "\"\<NearestNeighbors\>\"", ",", " ", "\"\<NeuralNetwork\>\"", ",", " ", 
     "\"\<RandomForest\>\"", ",", " ", "\"\<LinearRegression\>\""}], 
    "}"}]}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"methods", " ", "=", " ", 
+   RowBox[{"{", "\"\<NeuralNetwork\>\"", "}"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"predictedPrices", " ", "=", " ", 
    RowBox[{"Table", "[", "\[IndentingNewLine]", 
@@ -398,21 +455,24 @@ Cell[BoxData[{
          RowBox[{"Predict", "[", 
           RowBox[{"trainingPatterns", ",", " ", 
            RowBox[{"Method", " ", "\[Rule]", "#"}], ",", " ", 
-           RowBox[{"PerformanceGoal", "\[Rule]", "\"\<TrainingSpeed\>\""}]}], 
-          "]"}], "&"}], "/@", "  ", "methods"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"If", " ", "[", 
+           RowBox[{"PerformanceGoal", "\[Rule]", "\"\<Quality\>\""}]}], "]"}],
+          "&"}], "/@", "  ", "methods"}]}], ";", "\[IndentingNewLine]", 
+      RowBox[{"(*", 
        RowBox[{
-        RowBox[{"i", " ", "\[Equal]", " ", "sampleSize"}], ",", " ", 
-        RowBox[{
+        RowBox[{"If", " ", "[", 
          RowBox[{
-          RowBox[{"Print", "[", 
-           RowBox[{"PredictorInformation", "[", "#", "]"}], "]"}], " ", "&"}],
-          " ", "/@", " ", "predictors"}]}], "]"}], ";", "\[IndentingNewLine]", 
+          RowBox[{"i", " ", "\[Equal]", " ", "sampleSize"}], ",", " ", 
+          RowBox[{
+           RowBox[{
+            RowBox[{"Print", "[", 
+             RowBox[{"PredictorInformation", "[", "#", "]"}], "]"}], " ", 
+            "&"}], " ", "/@", " ", "predictors"}]}], "]"}], ";"}], "*)"}], 
+      "\[IndentingNewLine]", 
       RowBox[{
        RowBox[{
         RowBox[{
          RowBox[{"#", "[", 
-          RowBox[{"Keys", "[", "testPatterns", "]"}], "]"}], " ", "*", " ", 
+          RowBox[{"Keys", "[", "testPatterns", "]"}], "]"}], "  ", "*", " ", 
          RowBox[{"allBeforeRealPrices", "[", 
           RowBox[{"[", "i", "]"}], "]"}]}], " ", "&"}], " ", "/@", "  ", 
        "predictors"}]}], "\[IndentingNewLine]", ",", " ", 
@@ -489,1268 +549,51 @@ Cell[BoxData[{
    3.639312654273765*^9, 3.6393126627592916`*^9}, {3.6393129418539953`*^9, 
    3.6393129419977837`*^9}, {3.639313006811449*^9, 3.639313006879146*^9}, {
    3.63932648746663*^9, 3.639326489016946*^9}, {3.639327617415246*^9, 
-   3.639327617693534*^9}, {3.6393282073276176`*^9, 3.639328209357647*^9}}],
+   3.639327617693534*^9}, {3.6393282073276176`*^9, 3.639328209357647*^9}, {
+   3.639329479258812*^9, 3.639329479378211*^9}, {3.639330991321507*^9, 
+   3.639330992608869*^9}, {3.639386792123632*^9, 3.639386797412517*^9}, {
+   3.639386838449286*^9, 3.639386838680189*^9}, {3.63938734533405*^9, 
+   3.6393873571894417`*^9}, {3.639387389728524*^9, 3.639387408226169*^9}, {
+   3.639387484527886*^9, 3.6393875513032093`*^9}, {3.6393876015994043`*^9, 
+   3.6393876228316307`*^9}, {3.639387669595191*^9, 3.639387671153927*^9}, {
+   3.639387753256773*^9, 3.639387769008007*^9}, {3.6394149352534847`*^9, 
+   3.639414935346854*^9}, {3.6394210961079884`*^9, 3.639421108883497*^9}, 
+   3.639421179687042*^9, {3.639421246799255*^9, 3.6394212574907093`*^9}, {
+   3.6394218248283157`*^9, 3.639421830059964*^9}}],
 
 Cell[BoxData[
  RowBox[{"{", 
   RowBox[{"\<\"NearestNeighbors\"\>", ",", "\<\"NeuralNetwork\"\>", 
    ",", "\<\"RandomForest\"\>", ",", "\<\"LinearRegression\"\>"}], 
   "}"}]], "Output",
- CellChangeTimes->{3.6393104290502033`*^9, 3.639310557059202*^9, 
-  3.6393106404458017`*^9, 3.639310734332919*^9, 3.6393115358149223`*^9, 
-  3.639311570326277*^9, 3.639312348892644*^9, 3.639312454599595*^9, 
-  3.639312603071591*^9, 3.63931268470774*^9, 3.639326539000064*^9, 
-  3.639327618055923*^9, 3.639328209752275*^9}],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Predictor information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"K-nearest neighbors\"\>"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of neighbors\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "5"},
-             {
-              StyleBox["\<\"Distance function\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "EuclideanDistance"}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "K-nearest neighbors", "Number of features" -> 1, 
-   "Number of training examples" -> 18, "Number of extracted features" -> 1, 
-   "Number of neighbors" -> 5, "Distance function" -> 
-   EuclideanDistance]]], "Print",
- CellChangeTimes->{{3.6393091692842627`*^9, 3.639309186613182*^9}, 
-   3.639309218389626*^9, 3.639309789354686*^9, 3.6393101487175007`*^9, 
-   3.639310429116642*^9, 3.6393105571168613`*^9, 3.639310640533238*^9, 
-   3.639310734421555*^9, 3.639311536067389*^9, 3.639311570458761*^9, 
-   3.639312349035638*^9, 3.639312454695734*^9, 3.639312603270499*^9, 
-   3.639312684919754*^9, 3.639326539165122*^9, 3.639327618202222*^9, 
-   3.63932820989158*^9}],
+ CellChangeTimes->{
+  3.639386797960989*^9, 3.639387354053802*^9, {3.639387390490872*^9, 
+   3.639387420541398*^9}, {3.6393875360329323`*^9, 3.639387551586378*^9}, {
+   3.639387582231103*^9, 3.639387671418288*^9}, 3.639414970617619*^9, {
+   3.639421096420323*^9, 3.6394211484396343`*^9}, 3.6394211799389887`*^9, {
+   3.639421253575571*^9, 3.6394212717353992`*^9}, 3.639421830398954*^9, 
+   3.639422940247788*^9}],
 
 Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Predictor information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"Neural network\"\>"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"L1 regularization coefficient\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "0"},
-             {
-              StyleBox["\<\"L2 regularization coefficient\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "0.1`"},
-             {
-              StyleBox["\<\"Number of hidden layers\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Hidden nodes\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], 
-              TemplateBox[{",","\",\"","1"},
-               "RowWithSeparators"]},
-             {
-              StyleBox["\<\"Hidden layer activation functions\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], 
-              TemplateBox[{",","\",\"","\"Tanh\""},
-               "RowWithSeparators"]}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "Neural network", "Number of features" -> 1, 
-   "Number of training examples" -> 18, "Number of extracted features" -> 1, 
-   "L1 regularization coefficient" -> 0, "L2 regularization coefficient" -> 
-   0.1, "Number of hidden layers" -> 1, "Hidden nodes" -> Row[{1}, ","], 
-   "Hidden layer activation functions" -> Row[{"Tanh"}, ","]]]], "Print",
- CellChangeTimes->{{3.6393091692842627`*^9, 3.639309186613182*^9}, 
-   3.639309218389626*^9, 3.639309789354686*^9, 3.6393101487175007`*^9, 
-   3.639310429116642*^9, 3.6393105571168613`*^9, 3.639310640533238*^9, 
-   3.639310734421555*^9, 3.639311536067389*^9, 3.639311570458761*^9, 
-   3.639312349035638*^9, 3.639312454695734*^9, 3.639312603270499*^9, 
-   3.639312684919754*^9, 3.639326539165122*^9, 3.639327618202222*^9, 
-   3.639328209913628*^9}],
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Predictor information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"Random forest\"\>"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of trees\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "20"}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "Random forest", "Number of features" -> 1, 
-   "Number of training examples" -> 18, "Number of extracted features" -> 1, 
-   "Number of trees" -> 20]]], "Print",
- CellChangeTimes->{{3.6393091692842627`*^9, 3.639309186613182*^9}, 
-   3.639309218389626*^9, 3.639309789354686*^9, 3.6393101487175007`*^9, 
-   3.639310429116642*^9, 3.6393105571168613`*^9, 3.639310640533238*^9, 
-   3.639310734421555*^9, 3.639311536067389*^9, 3.639311570458761*^9, 
-   3.639312349035638*^9, 3.639312454695734*^9, 3.639312603270499*^9, 
-   3.639312684919754*^9, 3.639326539165122*^9, 3.639327618202222*^9, 
-   3.6393282099495697`*^9}],
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Predictor information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"Linear regression\"\>"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"L1 regularization coefficient\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "0.`"},
-             {
-              StyleBox["\<\"L2 regularization coefficient\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1.`"}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "Linear regression", "Number of features" -> 1, 
-   "Number of training examples" -> 18, "Number of extracted features" -> 1, 
-   "L1 regularization coefficient" -> 0., "L2 regularization coefficient" -> 
-   1.]]], "Print",
- GeneratedCell->False,
- CellAutoOverwrite->False,
- CellChangeTimes->{{3.6393091692842627`*^9, 3.639309186613182*^9}, 
-   3.639309218389626*^9, 3.639309789354686*^9, 3.6393101487175007`*^9, 
-   3.639310429116642*^9, 3.6393105571168613`*^9, 3.639310640533238*^9, 
-   3.639310734421555*^9, 3.639311536067389*^9, 3.639311570458761*^9, 
-   3.639312349035638*^9, 3.639312454695734*^9, 3.639312603270499*^9, 
-   3.639312684919754*^9, 3.639326539165122*^9, 3.639327618202222*^9, {
-   3.639328209988173*^9, 3.639328233521565*^9}}]
-}, Open  ]]
-}, Open  ]],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
-  "\[IndentingNewLine]", "\[IndentingNewLine]"}]], "Input",
- CellChangeTimes->{{3.639328242326256*^9, 3.639328297316001*^9}}],
+ RowBox[{"{", "\<\"NeuralNetwork\"\>", "}"}]], "Output",
+ CellChangeTimes->{
+  3.639386797960989*^9, 3.639387354053802*^9, {3.639387390490872*^9, 
+   3.639387420541398*^9}, {3.6393875360329323`*^9, 3.639387551586378*^9}, {
+   3.639387582231103*^9, 3.639387671418288*^9}, 3.639414970617619*^9, {
+   3.639421096420323*^9, 3.6394211484396343`*^9}, 3.6394211799389887`*^9, {
+   3.639421253575571*^9, 3.6394212717353992`*^9}, 3.639421830398954*^9, 
+   3.639422940253731*^9}],
 
 Cell[BoxData[
  RowBox[{"{", 
-  RowBox[{"\<\"NearestNeighbors\"\>", ",", "\<\"NeuralNetwork\"\>", 
-   ",", "\<\"RandomForest\"\>", ",", "\<\"LinearRegression\"\>"}], 
-  "}"}]], "Output",
- CellChangeTimes->{3.63932829316846*^9}],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Predictor information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"K-nearest neighbors\"\>"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of neighbors\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "5"},
-             {
-              StyleBox["\<\"Distance function\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "EuclideanDistance"}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "K-nearest neighbors", "Number of features" -> 1, 
-   "Number of training examples" -> 18, "Number of extracted features" -> 1, 
-   "Number of neighbors" -> 5, "Distance function" -> 
-   EuclideanDistance]]], "Print",
- CellChangeTimes->{3.639328293279413*^9}],
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Predictor information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"Neural network\"\>"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"L1 regularization coefficient\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "0"},
-             {
-              StyleBox["\<\"L2 regularization coefficient\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "0.1`"},
-             {
-              StyleBox["\<\"Number of hidden layers\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Hidden nodes\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], 
-              TemplateBox[{",","\",\"","1"},
-               "RowWithSeparators"]},
-             {
-              StyleBox["\<\"Hidden layer activation functions\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], 
-              TemplateBox[{",","\",\"","\"Tanh\""},
-               "RowWithSeparators"]}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "Neural network", "Number of features" -> 1, 
-   "Number of training examples" -> 18, "Number of extracted features" -> 1, 
-   "L1 regularization coefficient" -> 0, "L2 regularization coefficient" -> 
-   0.1, "Number of hidden layers" -> 1, "Hidden nodes" -> Row[{1}, ","], 
-   "Hidden layer activation functions" -> Row[{"Tanh"}, ","]]]], "Print",
- CellChangeTimes->{3.639328293324258*^9}],
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Predictor information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"Random forest\"\>"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of trees\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "20"}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "Random forest", "Number of features" -> 1, 
-   "Number of training examples" -> 18, "Number of extracted features" -> 1, 
-   "Number of trees" -> 20]]], "Print",
- CellChangeTimes->{3.6393282933569403`*^9}],
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Predictor information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"Linear regression\"\>"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"L1 regularization coefficient\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "0.`"},
-             {
-              StyleBox["\<\"L2 regularization coefficient\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1.`"}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "Linear regression", "Number of features" -> 1, 
-   "Number of training examples" -> 18, "Number of extracted features" -> 1, 
-   "L1 regularization coefficient" -> 0., "L2 regularization coefficient" -> 
-   1.]]], "Print",
- CellChangeTimes->{3.639328293390541*^9}]
-}, Open  ]],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"\<\"NearestNeighbors\"\>", ",", "\<\"NeuralNetwork\"\>", 
-   ",", "\<\"RandomForest\"\>", ",", "\<\"LinearRegression\"\>", 
-   ",", "\<\"Naive\"\>"}], "}"}]], "Output",
- CellChangeTimes->{3.6393282983943853`*^9}]
+  RowBox[{"\<\"NeuralNetwork\"\>", ",", "\<\"Naive\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.639386797960989*^9, 3.639387354053802*^9, {3.639387390490872*^9, 
+   3.639387420541398*^9}, {3.6393875360329323`*^9, 3.639387551586378*^9}, {
+   3.639387582231103*^9, 3.639387671418288*^9}, 3.639414970617619*^9, {
+   3.639421096420323*^9, 3.6394211484396343`*^9}, 3.6394211799389887`*^9, {
+   3.639421253575571*^9, 3.6394212717353992`*^9}, 3.639421830398954*^9, 
+   3.6394229865597973`*^9}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -1772,16 +615,7 @@ Cell[BoxData[
        RowBox[{"predictedPricesAllMethods", "[", 
         RowBox[{"[", 
          RowBox[{"All", ",", "i"}], "]"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"ListLinePlot", "[", 
-       RowBox[{
-        RowBox[{"{", 
-         RowBox[{"realPrices", ",", " ", "predictedPrices"}], "}"}], ",", 
-        RowBox[{"PlotLegends", "\[Rule]", 
-         RowBox[{"{", 
-          RowBox[{
-          "\"\<Real prices\>\"", ",", " ", "\"\<Predicted Prices\>\""}], 
-          "}"}]}]}], "]"}], ";", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{"mae", " ", "=", " ", 
        RowBox[{
         RowBox[{"Total", "[", 
@@ -1814,7 +648,7 @@ Cell[BoxData[
               RowBox[{"realPrices", "-", "beforeRealPrices"}], "]"}]}], "+", 
             "1"}], ")"}], "/", "2"}], "]"}], " ", "/", " ", 
         RowBox[{"Length", "[", "realPrices", "]"}]}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
       RowBox[{"money", " ", "=", " ", "1"}], ";", "\[IndentingNewLine]", 
       RowBox[{"For", " ", "[", 
        RowBox[{
@@ -1841,12 +675,86 @@ Cell[BoxData[
                RowBox[{"t", "-", "1"}], "]"}], "]"}]}]}], ";"}]}], 
          "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], ";", 
       "\[IndentingNewLine]", 
-      RowBox[{"AppendTo", "[", 
-       RowBox[{"measures", ",", 
-        RowBox[{"{", 
-         RowBox[{"mae", ",", " ", "mape", ",", " ", "money", ",", " ", 
-          RowBox[{"N", "[", "movementAccuracy", "]"}]}], "}"}]}], "]"}]}]}], 
-    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+      RowBox[{"moneyNoFees", " ", "=", " ", "money"}], ";", 
+      "\[IndentingNewLine]", "\[IndentingNewLine]", 
+      RowBox[{"money", " ", "=", " ", "1"}], ";", "\[IndentingNewLine]", 
+      RowBox[{"hasInvested", " ", "=", " ", "True"}], ";", 
+      "\[IndentingNewLine]", 
+      RowBox[{
+       RowBox[{"For", " ", "[", 
+        RowBox[{
+         RowBox[{"t", " ", "=", " ", "2"}], ",", " ", 
+         RowBox[{"t", " ", "\[LessEqual]", 
+          RowBox[{"Length", "[", "predictedPrices", "]"}]}], ",", " ", 
+         RowBox[{"t", "++"}], ",", "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"transactionFee", " ", "=", " ", 
+           RowBox[{"money", " ", "*", " ", 
+            RowBox[{"0.14", " ", "/", " ", "100"}]}]}], ";", 
+          "\[IndentingNewLine]", "\[IndentingNewLine]", 
+          RowBox[{"If", " ", "[", 
+           RowBox[{"hasInvested", ",", "\[IndentingNewLine]", 
+            RowBox[{"If", " ", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"predictedPrices", "[", 
+                 RowBox[{"[", "t", "]"}], "]"}], " ", "+", " ", 
+                "transactionFee"}], " ", "<", 
+               RowBox[{"realPrices", "[", 
+                RowBox[{"[", 
+                 RowBox[{"t", "-", "1"}], "]"}], "]"}]}], ",", "  ", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"money", " ", "-=", " ", "transactionFee"}], ";", 
+               "\[IndentingNewLine]", 
+               RowBox[{"hasInvested", "=", "False"}], ";"}], 
+              "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"money", " ", "*=", " ", 
+                RowBox[{
+                 RowBox[{"realPrices", "[", 
+                  RowBox[{"[", "t", "]"}], "]"}], " ", "/", " ", 
+                 RowBox[{"realPrices", "[", 
+                  RowBox[{"[", 
+                   RowBox[{"t", "-", "1"}], "]"}], "]"}]}]}], ";"}]}], 
+             "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+            "\[IndentingNewLine]", 
+            RowBox[{"If", " ", "[", 
+             RowBox[{
+              RowBox[{
+               RowBox[{
+                RowBox[{"predictedPrices", "[", 
+                 RowBox[{"[", "t", "]"}], "]"}], " ", "-", " ", 
+                "transactionFee"}], " ", "\[GreaterEqual]", 
+               RowBox[{"realPrices", "[", 
+                RowBox[{"[", 
+                 RowBox[{"t", "-", "1"}], "]"}], "]"}]}], ",", "  ", 
+              "\[IndentingNewLine]", 
+              RowBox[{
+               RowBox[{"money", " ", "=", " ", 
+                RowBox[{
+                 RowBox[{"(", 
+                  RowBox[{"money", "-", "transactionFee"}], ")"}], "*", 
+                 RowBox[{
+                  RowBox[{"realPrices", "[", 
+                   RowBox[{"[", "t", "]"}], "]"}], " ", "/", " ", 
+                  RowBox[{"realPrices", "[", 
+                   RowBox[{"[", 
+                    RowBox[{"t", "-", "1"}], "]"}], "]"}]}]}]}], ";", 
+               "\[IndentingNewLine]", 
+               RowBox[{"hasInvested", "=", "True"}], ";"}]}], 
+             "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], 
+          ";"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], 
+       "\[IndentingNewLine]", 
+       RowBox[{"AppendTo", "[", 
+        RowBox[{"measures", ",", 
+         RowBox[{"{", 
+          RowBox[{
+          "mae", ",", " ", "mape", ",", " ", "moneyNoFees", ",", " ", "money",
+            ",", " ", 
+           RowBox[{"N", "[", "movementAccuracy", "]"}]}], "}"}]}], 
+        "]"}]}]}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
    "\[IndentingNewLine]", "\[IndentingNewLine]", 
    RowBox[{"table", " ", "=", " ", 
     RowBox[{"TableForm", "[", 
@@ -1857,11 +765,24 @@ Cell[BoxData[
          RowBox[{"{", 
           RowBox[{
           "\"\<MAE\>\"", ",", " ", "\"\<MAPE\>\"", ",", " ", 
+           "\"\<Investment profit no fees\>\"", ",", " ", 
            "\"\<Investment profit\>\"", ",", " ", 
            "\"\<Movement accuracy\>\""}], "}"}]}], "}"}]}]}], "]"}]}], 
    "\[IndentingNewLine]", 
    RowBox[{"Export", "[", 
-    RowBox[{"\"\<tidilua.tex\>\"", ",", " ", "table"}], "]"}]}]}]], "Input",
+    RowBox[{"\"\<tidilua.tex\>\"", ",", " ", "table"}], "]"}], 
+   "\[IndentingNewLine]", 
+   RowBox[{"ListLinePlot", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"realPrices", ",", " ", 
+       RowBox[{"predictedPricesAllMethods", "[", 
+        RowBox[{"[", 
+         RowBox[{"All", ",", "1"}], "]"}], "]"}]}], "}"}], ",", 
+     RowBox[{"PlotLegends", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"\"\<Real prices\>\"", ",", " ", "\"\<Predicted Prices\>\""}], 
+       "}"}]}]}], "]"}]}]}]], "Input",
  CellChangeTimes->{{3.639308375776013*^9, 3.6393084395766172`*^9}, {
    3.639308478386278*^9, 3.639308484230022*^9}, {3.639308834971859*^9, 
    3.639308843557012*^9}, {3.639308894401366*^9, 3.639308925652276*^9}, 
@@ -1883,7 +804,14 @@ Cell[BoxData[
    3.639315758830103*^9, 3.639315899404414*^9}, {3.6393270163111153`*^9, 
    3.6393270519058723`*^9}, {3.639327082015224*^9, 3.6393270991127977`*^9}, {
    3.6393271826821527`*^9, 3.639327262711204*^9}, {3.639327317984795*^9, 
-   3.639327321722581*^9}}],
+   3.639327321722581*^9}, 3.639386859477049*^9, {3.639387271395067*^9, 
+   3.639387321653275*^9}, {3.639421865535125*^9, 3.639421887343013*^9}, 
+   3.6394219308916283`*^9, {3.639421964544243*^9, 3.639422168486739*^9}, {
+   3.639422203190096*^9, 3.639422203428009*^9}, {3.639422235438696*^9, 
+   3.639422297332337*^9}, {3.639422341665393*^9, 3.6394225114281893`*^9}, {
+   3.639422548170969*^9, 3.6394225910827227`*^9}, {3.639422647559268*^9, 
+   3.639422655830847*^9}, {3.639422730969141*^9, 3.639422745506806*^9}, {
+   3.6394228575799227`*^9, 3.639422867162777*^9}}],
 
 Cell[BoxData[
  TagBox[
@@ -1895,30 +823,20 @@ Cell[BoxData[
        HoldForm], 
       TagBox["\<\"MAPE\"\>",
        HoldForm], 
+      TagBox["\<\"Investment profit no fees\"\>",
+       HoldForm], 
       TagBox["\<\"Investment profit\"\>",
        HoldForm], 
       TagBox["\<\"Movement accuracy\"\>",
        HoldForm]},
      {
-      TagBox["\<\"NearestNeighbors\"\>",
-       HoldForm], "124.66189627058554`", "0.5089777149975961`", 
-      "1.0155690046805406`", "0.5`"},
-     {
       TagBox["\<\"NeuralNetwork\"\>",
-       HoldForm], "134.08510300891135`", "0.5480293625325189`", 
-      "1.0254281390479003`", "0.5`"},
-     {
-      TagBox["\<\"RandomForest\"\>",
-       HoldForm], "146.24250332223474`", "0.5972614258996668`", 
-      "1.0202640352063865`", "0.5`"},
-     {
-      TagBox["\<\"LinearRegression\"\>",
-       HoldForm], "121.12640180507367`", "0.4953698403263503`", 
-      "0.9943711119905382`", "0.4523809523809524`"},
+       HoldForm], "21.683759995697983`", "0.4253392749049422`", 
+      "1.039181661165153`", "0.9894551974847383`", "0.4870967741935484`"},
      {
       TagBox["\<\"Naive\"\>",
-       HoldForm], "114.93809523809509`", "0.46980181347063565`", 
-      "1.0234911515438376`", "0.5`"}
+       HoldForm], "20.50385548387096`", "0.4017335335650905`", 
+      "1.102485699909428`", "1.102485699909428`", "0.5`"}
     },
     GridBoxAlignment->{
      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
@@ -1937,65 +855,320 @@ Cell[BoxData[
   Function[BoxForm`e$, 
    TableForm[
    BoxForm`e$, 
-    TableHeadings -> {{
-      "NearestNeighbors", "NeuralNetwork", "RandomForest", "LinearRegression",
-        "Naive"}, {
-      "MAE", "MAPE", "Investment profit", "Movement accuracy"}}]]]], "Output",\
-
+    TableHeadings -> {{"NeuralNetwork", "Naive"}, {
+      "MAE", "MAPE", "Investment profit no fees", "Investment profit", 
+       "Movement accuracy"}}]]]], "Output",
  CellChangeTimes->{
-  3.639311447376615*^9, {3.639311477661706*^9, 3.639311513685049*^9}, {
-   3.639311666569364*^9, 3.639311700794787*^9}, {3.6393117319245996`*^9, 
-   3.639311746410569*^9}, {3.639312228049021*^9, 3.639312235472632*^9}, {
-   3.63931228728004*^9, 3.63931232316532*^9}, 3.639312393071316*^9, 
-   3.639312446293676*^9, 3.6393124984279633`*^9, 3.639312579539418*^9, 
-   3.639312645912898*^9, {3.639312799281877*^9, 3.63931281734464*^9}, 
-   3.6393267639661293`*^9, {3.639327062362048*^9, 3.639327099899722*^9}, 
-   3.639327263878767*^9, 3.639327322699663*^9, 3.639327628703906*^9}],
+  3.63942255387436*^9, {3.6394225844942913`*^9, 3.6394225914487047`*^9}, 
+   3.639422656537324*^9, 3.639422867522665*^9}],
 
 Cell[BoxData["\<\"tidilua.tex\"\>"], "Output",
  CellChangeTimes->{
-  3.639311447376615*^9, {3.639311477661706*^9, 3.639311513685049*^9}, {
-   3.639311666569364*^9, 3.639311700794787*^9}, {3.6393117319245996`*^9, 
-   3.639311746410569*^9}, {3.639312228049021*^9, 3.639312235472632*^9}, {
-   3.63931228728004*^9, 3.63931232316532*^9}, 3.639312393071316*^9, 
-   3.639312446293676*^9, 3.6393124984279633`*^9, 3.639312579539418*^9, 
-   3.639312645912898*^9, {3.639312799281877*^9, 3.63931281734464*^9}, 
-   3.6393267639661293`*^9, {3.639327062362048*^9, 3.639327099899722*^9}, 
-   3.639327263878767*^9, 3.639327322699663*^9, 3.6393276287607403`*^9}]
-}, Open  ]],
-
-Cell[BoxData[""], "Input",
- CellChangeTimes->{{3.639326808867241*^9, 3.639327012522586*^9}}],
-
-Cell[CellGroupData[{
+  3.63942255387436*^9, {3.6394225844942913`*^9, 3.6394225914487047`*^9}, 
+   3.639422656537324*^9, 3.639422867570066*^9}],
 
 Cell[BoxData[
- RowBox[{
-  RowBox[{"(", 
-   RowBox[{
-    RowBox[{"{", 
-     RowBox[{"1", ",", "2"}], "}"}], "+", "1"}], ")"}], "/", "2"}]], "Input",
- CellChangeTimes->{{3.639327241845461*^9, 3.639327250468322*^9}}],
-
-Cell[BoxData[
- RowBox[{"{", 
-  RowBox[{"1", ",", 
-   FractionBox["3", "2"]}], "}"}]], "Output",
+ TemplateBox[{GraphicsBox[{{}, {{{}, {}, {
+        Hue[0.67, 0.6, 0.6], 
+        Directive[
+         PointSize[0.011111111111111112`], 
+         RGBColor[0.368417, 0.506779, 0.709798], 
+         AbsoluteThickness[1.6]], 
+        LineBox[CompressedData["
+1:eJxdlFlIlFEYhv+6qegmIiLJagqzhYjS1MqWv0XNUnNmdNSZZi2HoB2iKBB+
+IiiIiIoC8cYWgsKgGu2imzboIqSE9uXCCryJNiKiIFrm/Z6BRtDD43ue7/vO
+OaNTUzsC7cMdx+n6+/1v1dfn5f9+epszrv0iu3qH4ZFuS+TqzX4PHiM+DY/L
+cl0PPMG9eL7BLT0HF7o9l5/Hh07APrcpMKO74CA8TZyCi8R74GKtO+CZqp+b
+b3Z2f2ctPEf+Yniu5quE5+l8VfB85Tm/JDtvei5cqv25egvyuCyPy7VWwBXZ
+eTNF8ELVnwwv0loCL9Z+H1yp+2uAl8gPwku17oKXyd8LL9f5tsGu7i9g7Ll6
+zwT5CtX3k6/Q/U4kX6n7fXXNcnHnd2Nnldan5KuUPyJfrXm+kK/W+RzqV+k+
+P5BXaZ4+/GrNf51cnLlNXvM/ezXq94t8jeqP5XxrlBfTv1bzlJPXKs99HtZq
+nkJy49Hk67R/Evk69RtPXqf5x5HXKZ9GXq96zeT1Ok/u76NB77WF3LiDfL3q
+8ffjGbPfadT5Dhi7jZp3P/vz+Faj1k34fq0n8Y2P4vs1/yF84934AdU/gx/Q
++Y7gi0uP4wfkX8APim/gB3X+6/hBnbcLX+z04Tfp8/gEv0nrAL7ygpf4TZr3
+PX6z+v/Eb9b6DF/sZfBt/1v8kOp/ww/pvD/wQ1pn9ZofUn/X2GmRX23siju3
+GXst9nnGb1H9nfitmmc/fqvyJL7yoQ78Vnsf/Dbl2/Hb5Mfw2zSPH9/yOH5Y
+eTt+WO+3Dz+sfqfxw/b/Hj8i/xh+ROdlv2d8Fj+ieS/hb9D7PMTfoP2P8S2/
+i6+8/w5+VPsH8aOa9yt+VP6wPvOjmvcjfkz13uDHdD7qeTG9z336K8/04MfV
+/xR+XPVv4cfl38OPq34vfkLcZewTZw5RL6HP11bjRB57Cc3P/u6E7vcK/RI6
+/4DxoOUP6J+U/4L+Sc3zif5J7f9Gf9v/mv7iOvZ3JzXfb/ontb6kv+ql39E/
+pflG2Pv4Uuo3xdhN6T7KjBPK0zONPct/0N94FO+d0ntMNx4UF9QbOxs1fw39
+xf176L9R95GmvzjT3uf+ATmIpHY=
+         "]]}, {
+        Hue[0.9060679774997897, 0.6, 0.6], 
+        Directive[
+         PointSize[0.011111111111111112`], 
+         RGBColor[0.880722, 0.611041, 0.142051], 
+         AbsoluteThickness[1.6]], 
+        LineBox[CompressedData["
+1:eJw9lA00lXccx++phNYsuTuHWK4WSSHqSiW+ilLe7ou36+K+saU3U5oW2sXM
+rW6banFKmd6kF/ISSoowa156GyqytKg2pntrtFLMzp6fe85z7vk83//n/z3P
+///8Hwt5jCBqAovFyh67/vv//6dx01uRtKolsxTMDdQr8oaFkcR6SOVGXc7P
+IJ6Gpb6NJ6tTidkwaXW8NzmH2Bianxaa+V4kNsNQf5/D1TPEHCh7S+olWcSz
+YK7XUr4rnXg2YmewjXZKiK3QdCI8MzGR2Bqdmr1px7YQ22DPq+cJ6u+I5+Mb
+3/6Rf/yI7dByq/irzcuJF6DJVb3awZXYAar298LjXsSOQPmOaKEP8UIcDYs2
+tlxAvAicvv5Mu/H5uNCpEE96sIzYCdy2xRKWC/FixO+9p/nTmdgZWCS7PTSb
+eAmievNO3p9JvBRv5sXuNrchXgbnkAa1ySxiFxzY95A3YwnxcsSVXuhu5hG7
+YmXZkbUTZMRuyLjp7F+/jRhI5h6/uz2GYSUwNfdsQo+Qcncc0alaXS2i3B1s
+VnWO9Xi+Aie3L91Sa0r5CnR9oXhm11HC5CtRF+3KrutjWLkSPdqM2uY2yj0w
+6QjbI/wO5R6IlRaU5vVS7omGafq2+cOUe2J0XtzkWTQfaxU6+BGTphZTvgoX
+ksMHLhRRvhrJG2srf6+kfDXyW9yffHSNci/sf/vAWv2Cci/U8UWl2w3p+dbA
+WPLxboEVPd8apLZlxW9xonwtPhjg+G2YT/la9GL46RQTyr3xgr2p+MRkyr3x
+/KhExR/fXx9ETvW4V2BEuQ+ae6x23J9OuS+yXfy2sOj9UPpincUu9WUx5X4o
+9mnOGVlHuR80iRs6rMfPgz+4XesM36RR7o+gwEyrmdsp5+FxTMOpQvLBQ4JA
++5a7h8bzUHKv6+7jeIZreBiVqIIMlOTz4eh2aK53MPl8mM4pnmB6lHw+XN7X
+D365l3w+spWRFhoV+QLoFmXZ6WwmXzB2Hv0Sz5wmXwA36xrL78d9AWx0l2v9
+D5IvhGd1vEpD3xMIkcOeWLn1OvlCbLZN0/ZUkS/EEe5Q7ZPx71MAFvVWDLdf
+Jj8AwdLy9PaH5AdA4+esUrSTH4Am3tdtGx+RH4jloeEnmjTkB6J3oav9etZF
+xg/EqnKjpqR35AficPq7uqZL5AfB60dX8cgT8oNQuWdiSv0Q9Qdhfdql+cph
+8oOwtTD1WZwtMz8rGOY5ZT+IPRlG8Nh5rnnJ96b+YNj5nJ4rj2O4JhhLzAdP
+ZS8mPwRW+plsy63khyD+hF5K6E7yQ9BtOSEyN5b8EGiM9v8xmkS+CBmtEUkZ
+e8kXgf9bT9RACvkiNOlGn933OfkiJEWfzjYIJj8UV2vrj+2Xkh8K0YfrKgZo
+vDIU1Sm5wshE8kMxm93qn3yYfDFilqoa2sb7xUjaePrlpQPki9HsYKzvlE2+
+eGyHpqAqj/wwdH7mZS8pIj8MVxTJhX+1kR+G83lZcz07yA9DpsPbTQ6/kB+O
+c8mNssafyQ+Hd6mvfc9T8sOhP4JE8Vvyw8ENeJ2VqVvG+BHY5nSL1/w3+RHg
+6KbZGj0jPwLKdjWruof8CDRqpfHnblK/BE6d05P6ismXYJpNQr+c1kcpQeQx
+C5uSevIlmONxt2FWI/lSHHAxfJ5VwTBHipfvv3068SjNJwUXZV5P0xmWShGj
+HeW/2UDzSzH4iVf2aDTDuVIYlOg/GlRTnxSjOYVawRWGu6VolbkYmHVRvwyG
+dd6hnDvUL8M1s+Op6Y+pXwbvKnGB+g31y9Ax91b+6xHql8HG3d895Ffql6HH
+NyE/lMbXyKCyL8q6rcesd7cMDvcTbphTH0sO04gwHTtab44cxuc7r2wyYsZD
+jhKH94uPzWNYKkeqyPPRp+4MK+XYk3j1ZKElw7lyVAzfmFOgpX45JqXapyg+
+on45ohoP3lU70v4r4JZyJ+e6gmGOAq/8DxWbeFC/AnY3OMdFu6hfgUq9ZSvX
+yMvwL8qD7jw=
+         "]]}}}, {}}, {
+    DisplayFunction -> Identity, PlotRangePadding -> {{
+        Scaled[0.02], 
+        Scaled[0.02]}, {
+        Scaled[0.05], 
+        Scaled[0.05]}}, AxesOrigin -> {0, 4748.254085954595}, 
+     PlotRange -> {{0., 155.}, {4784.687230915223, 5513.350130127785}}, 
+     DisplayFunction -> Identity, AspectRatio -> 
+     NCache[GoldenRatio^(-1), 0.6180339887498948], Axes -> {True, True}, 
+     AxesLabel -> {None, None}, AxesOrigin -> {0, 4748.254085954595}, 
+     DisplayFunction :> Identity, Frame -> {{False, False}, {False, False}}, 
+     FrameLabel -> {{None, None}, {None, None}}, 
+     FrameTicks -> {{Automatic, Automatic}, {Automatic, Automatic}}, 
+     GridLines -> {None, None}, GridLinesStyle -> Directive[
+       GrayLevel[0.5, 0.4]], Method -> {}, 
+     PlotRange -> {{0., 155.}, {4784.687230915223, 5513.350130127785}}, 
+     PlotRangeClipping -> True, PlotRangePadding -> {{
+        Scaled[0.02], 
+        Scaled[0.02]}, {
+        Scaled[0.05], 
+        Scaled[0.05]}}, Ticks -> {Automatic, Automatic}}],FormBox[
+    FormBox[
+     TemplateBox[{"\"Real prices\"", "\"Predicted Prices\""}, "LineLegend", 
+      DisplayFunction -> (FormBox[
+        StyleBox[
+         StyleBox[
+          PaneBox[
+           TagBox[
+            GridBox[{{
+               TagBox[
+                GridBox[{{
+                   GraphicsBox[{{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.2], 
+                    RGBColor[0.368417, 0.506779, 0.709798], 
+                    AbsoluteThickness[1.6]], {
+                    LineBox[{{0, 10}, {20, 10}}]}}, {
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.2], 
+                    RGBColor[0.368417, 0.506779, 0.709798], 
+                    AbsoluteThickness[1.6]], {}}}, AspectRatio -> Full, 
+                    ImageSize -> {20, 10}, PlotRangePadding -> None, 
+                    ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #}, {
+                   GraphicsBox[{{
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.2], 
+                    RGBColor[0.880722, 0.611041, 0.142051], 
+                    AbsoluteThickness[1.6]], {
+                    LineBox[{{0, 10}, {20, 10}}]}}, {
+                    Directive[
+                    EdgeForm[
+                    Directive[
+                    Opacity[0.3], 
+                    GrayLevel[0]]], 
+                    PointSize[0.2], 
+                    RGBColor[0.880722, 0.611041, 0.142051], 
+                    AbsoluteThickness[1.6]], {}}}, AspectRatio -> Full, 
+                    ImageSize -> {20, 10}, PlotRangePadding -> None, 
+                    ImagePadding -> Automatic, 
+                    BaselinePosition -> (Scaled[0.1] -> Baseline)], #2}}, 
+                 GridBoxAlignment -> {
+                  "Columns" -> {Center, Left}, "Rows" -> {{Baseline}}}, 
+                 AutoDelete -> False, 
+                 GridBoxDividers -> {
+                  "Columns" -> {{False}}, "Rows" -> {{False}}}, 
+                 GridBoxItemSize -> {"Columns" -> {{All}}, "Rows" -> {{All}}},
+                  GridBoxSpacings -> {
+                  "Columns" -> {{0.5}}, "Rows" -> {{0.8}}}], "Grid"]}}, 
+             GridBoxAlignment -> {"Columns" -> {{Left}}, "Rows" -> {{Top}}}, 
+             AutoDelete -> False, 
+             GridBoxItemSize -> {
+              "Columns" -> {{Automatic}}, "Rows" -> {{Automatic}}}, 
+             GridBoxSpacings -> {"Columns" -> {{1}}, "Rows" -> {{0}}}], 
+            "Grid"], Alignment -> Left, AppearanceElements -> None, 
+           ImageMargins -> {{5, 5}, {5, 5}}, ImageSizeAction -> 
+           "ResizeToFit"], LineIndent -> 0, StripOnInput -> False], {
+         FontFamily -> "Arial"}, Background -> Automatic, StripOnInput -> 
+         False], TraditionalForm]& ), 
+      InterpretationFunction :> (RowBox[{"LineLegend", "[", 
+         RowBox[{
+           RowBox[{"{", 
+             RowBox[{
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"PointSize", "[", "0.011111111111111112`", "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[0.368417, 0.506779, 0.709798], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[
+                    0.24561133333333335`, 0.3378526666666667, 
+                    0.4731986666666667], FrameTicks -> None, PlotRangePadding -> 
+                    None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], 
+                    "RGBColor[0.368417, 0.506779, 0.709798]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[0.368417, 0.506779, 0.709798]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[0.368417, 0.506779, 0.709798], Editable -> False,
+                     Selectable -> False], ",", 
+                   RowBox[{"AbsoluteThickness", "[", "1.6`", "]"}]}], "]"}], 
+               ",", 
+               RowBox[{"Directive", "[", 
+                 RowBox[{
+                   RowBox[{"PointSize", "[", "0.011111111111111112`", "]"}], 
+                   ",", 
+                   InterpretationBox[
+                    ButtonBox[
+                    TooltipBox[
+                    RowBox[{
+                    GraphicsBox[{{
+                    GrayLevel[0], 
+                    RectangleBox[{0, 0}]}, {
+                    GrayLevel[0], 
+                    RectangleBox[{1, -1}]}, {
+                    RGBColor[0.880722, 0.611041, 0.142051], 
+                    RectangleBox[{0, -1}, {2, 1}]}}, AspectRatio -> 1, Frame -> 
+                    True, FrameStyle -> 
+                    RGBColor[
+                    0.587148, 0.40736066666666665`, 0.09470066666666668], 
+                    FrameTicks -> None, PlotRangePadding -> None, ImageSize -> 
+                    Dynamic[{
+                    Automatic, 1.35 CurrentValue["FontCapHeight"]/
+                    AbsoluteCurrentValue[Magnification]}]], 
+                    "\[InvisibleSpace]"}], 
+                    "RGBColor[0.880722, 0.611041, 0.142051]"], Appearance -> 
+                    None, BaseStyle -> {}, BaselinePosition -> Baseline, 
+                    DefaultBaseStyle -> {}, ButtonFunction :> 
+                    With[{Typeset`box$ = EvaluationBox[]}, 
+                    If[
+                    Not[
+                    AbsoluteCurrentValue["Deployed"]], 
+                    SelectionMove[Typeset`box$, All, Expression]; 
+                    FrontEnd`Private`$ColorSelectorInitialAlpha = 1; 
+                    FrontEnd`Private`$ColorSelectorInitialColor = 
+                    RGBColor[0.880722, 0.611041, 0.142051]; 
+                    FrontEnd`Private`$ColorSelectorUseMakeBoxes = True; 
+                    MathLink`CallFrontEnd[
+                    FrontEnd`AttachCell[Typeset`box$, 
+                    FrontEndResource["RGBColorValueSelector"], {
+                    0, {Left, Bottom}}, {Left, Top}, 
+                    "ClosingActions" -> {
+                    "SelectionDeparture", "ParentChanged", 
+                    "EvaluatorQuit"}]]]], BaseStyle -> Inherited, Evaluator -> 
+                    Automatic, Method -> "Preemptive"], 
+                    RGBColor[0.880722, 0.611041, 0.142051], Editable -> False,
+                     Selectable -> False], ",", 
+                   RowBox[{"AbsoluteThickness", "[", "1.6`", "]"}]}], "]"}]}],
+              "}"}], ",", 
+           RowBox[{"{", 
+             RowBox[{#, ",", #2}], "}"}], ",", 
+           RowBox[{"Joined", "\[Rule]", 
+             RowBox[{"{", 
+               RowBox[{"{", 
+                 RowBox[{"True", ",", "True"}], "}"}], "}"}]}], ",", 
+           RowBox[{"LabelStyle", "\[Rule]", 
+             RowBox[{"{", "}"}]}], ",", 
+           RowBox[{"LegendLayout", "\[Rule]", "\"Column\""}], ",", 
+           RowBox[{"LegendMarkers", "\[Rule]", 
+             RowBox[{"{", 
+               RowBox[{
+                 RowBox[{"{", 
+                   RowBox[{"False", ",", "Automatic"}], "}"}], ",", 
+                 RowBox[{"{", 
+                   RowBox[{"False", ",", "Automatic"}], "}"}]}], "}"}]}]}], 
+         "]"}]& ), Editable -> True], TraditionalForm], TraditionalForm]},
+  "Legended",
+  DisplayFunction->(GridBox[{{
+      TagBox[
+       ItemBox[
+        PaneBox[
+         TagBox[#, "SkipImageSizeLevel"], Alignment -> {Center, Baseline}, 
+         BaselinePosition -> Baseline], DefaultBaseStyle -> "Labeled"], 
+       "SkipImageSizeLevel"], 
+      ItemBox[#2, DefaultBaseStyle -> "LabeledLabel"]}}, 
+    GridBoxAlignment -> {"Columns" -> {{Center}}, "Rows" -> {{Center}}}, 
+    AutoDelete -> False, GridBoxItemSize -> Automatic, 
+    BaselinePosition -> {1, 1}]& ),
+  Editable->True,
+  InterpretationFunction->(RowBox[{"Legended", "[", 
+     RowBox[{#, ",", 
+       RowBox[{"Placed", "[", 
+         RowBox[{#2, ",", "After"}], "]"}]}], "]"}]& )]], "Output",
  CellChangeTimes->{
-  3.639326811331045*^9, {3.639326859924349*^9, 3.639326922043399*^9}, {
-   3.639326974069167*^9, 3.6393270065881166`*^9}, {3.639327245464798*^9, 
-   3.6393272513560667`*^9}}]
+  3.63942255387436*^9, {3.6394225844942913`*^9, 3.6394225914487047`*^9}, 
+   3.639422656537324*^9, 3.6394228676521873`*^9}]
 }, Open  ]],
-
-Cell[BoxData[
- RowBox[{"\[IndentingNewLine]", "\[IndentingNewLine]"}]], "Input",
- CellChangeTimes->{{3.639328302187003*^9, 3.639328302372066*^9}}],
 
 Cell[CellGroupData[{
 
 Cell[BoxData[{
  RowBox[{
-  RowBox[{"sampleSize", " ", "=", " ", "20"}], ";"}], "\[IndentingNewLine]", 
+  RowBox[{"sampleSize", " ", "=", " ", "30"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"windowSize", " ", "=", "1"}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
@@ -2007,69 +1180,77 @@ Cell[BoxData[{
      "\"\<SupportVectorMachine\>\"", ",", "\"\<RandomForest\>\""}], "}"}]}], 
   "\[NoBreak]", ";"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"predictedPrices", " ", "=", " ", 
-   RowBox[{"Table", "[", "\[IndentingNewLine]", 
+  RowBox[{"methods", " ", "=", " ", 
+   RowBox[{"{", "\"\<NeuralNetwork\>\"", "}"}]}], "\[NoBreak]", 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"priceChanges", " ", "=", " ", "allRealPrices"}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{"predictedPrices", " ", "=", " ", 
+  RowBox[{"ParallelTable", "[", "\[IndentingNewLine]", 
+   RowBox[{
     RowBox[{
-     RowBox[{
-      RowBox[{"patterns", " ", "=", " ", 
-       RowBox[{"Table", "[", 
-        RowBox[{
-         RowBox[{
-          RowBox[{"priceChanges", "[", 
-           RowBox[{"[", 
-            RowBox[{"j", ";;", 
-             RowBox[{"j", "+", "windowSize", "-", "1"}]}], "]"}], "]"}], 
-          "\[Rule]", 
-          RowBox[{"Sign", "[", 
-           RowBox[{
-            RowBox[{"priceChanges", "[", 
-             RowBox[{"[", 
-              RowBox[{"j", "+", "windowSize"}], "]"}], "]"}], "-", 
-            RowBox[{"priceChanges", "[", 
-             RowBox[{"[", 
-              RowBox[{"j", "+", "windowSize", "-", "1"}], "]"}], "]"}]}], 
-           "]"}]}], ",", " ", 
-         RowBox[{"{", 
-          RowBox[{"j", ",", " ", 
-           RowBox[{"i", "-", "sampleSize", "+", "1"}], ",", 
-           RowBox[{"i", "-", "windowSize"}]}], "}"}]}], "]"}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"trainingPatterns", " ", "=", " ", 
-       RowBox[{"patterns", "[", 
-        RowBox[{"[", 
-         RowBox[{"1", ";;", 
-          RowBox[{"-", "2"}]}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"testPatterns", " ", "=", " ", 
-       RowBox[{"patterns", "[", 
-        RowBox[{"[", 
-         RowBox[{"-", "1"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
-      "\[IndentingNewLine]", 
-      RowBox[{"predictors", " ", "=", " ", 
+     RowBox[{"patterns", " ", "=", " ", 
+      RowBox[{"Table", "[", 
        RowBox[{
         RowBox[{
-         RowBox[{"Classify", "[", 
-          RowBox[{"trainingPatterns", ",", " ", 
-           RowBox[{"Method", " ", "\[Rule]", "#"}], ",", " ", 
-           RowBox[{"PerformanceGoal", "\[Rule]", "\"\<TrainingSpeed\>\""}]}], 
-          "]"}], "&"}], "/@", "  ", "methods"}]}], ";", "\[IndentingNewLine]", 
-      RowBox[{"If", " ", "[", 
-       RowBox[{
-        RowBox[{"i", " ", "\[Equal]", " ", "sampleSize"}], ",", " ", 
-        RowBox[{
-         RowBox[{
-          RowBox[{"Print", "[", 
-           RowBox[{"ClassifierInformation", "[", "#", "]"}], "]"}], " ", 
-          "&"}], " ", "/@", " ", "predictors"}]}], "]"}], ";", 
-      "\[IndentingNewLine]", 
+         RowBox[{"priceChanges", "[", 
+          RowBox[{"[", 
+           RowBox[{"j", ";;", 
+            RowBox[{"j", "+", "windowSize", "-", "1"}]}], "]"}], "]"}], 
+         "\[Rule]", 
+         RowBox[{"Sign", "[", 
+          RowBox[{
+           RowBox[{"priceChanges", "[", 
+            RowBox[{"[", 
+             RowBox[{"j", "+", "windowSize"}], "]"}], "]"}], "-", 
+           RowBox[{"priceChanges", "[", 
+            RowBox[{"[", 
+             RowBox[{"j", "+", "windowSize", "-", "1"}], "]"}], "]"}]}], 
+          "]"}]}], ",", " ", 
+        RowBox[{"{", 
+         RowBox[{"j", ",", " ", 
+          RowBox[{"i", "-", "sampleSize", "+", "1"}], ",", 
+          RowBox[{"i", "-", "windowSize"}]}], "}"}]}], "]"}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"trainingPatterns", " ", "=", " ", 
+      RowBox[{"patterns", "[", 
+       RowBox[{"[", 
+        RowBox[{"1", ";;", 
+         RowBox[{"-", "2"}]}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"testPatterns", " ", "=", " ", 
+      RowBox[{"patterns", "[", 
+       RowBox[{"[", 
+        RowBox[{"-", "1"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"predictors", " ", "=", " ", 
       RowBox[{
        RowBox[{
-        RowBox[{"#", "[", 
-         RowBox[{"Keys", "[", "testPatterns", "]"}], "]"}], " ", "&"}], " ", "/@",
-        "  ", "predictors"}]}], "\[IndentingNewLine]", ",", " ", 
-     RowBox[{"{", 
-      RowBox[{"i", ",", "sampleSize", ",", 
-       RowBox[{"Length", "[", "priceChanges", "]"}]}], "}"}]}], "]"}]}], 
-  ";"}], "\[IndentingNewLine]", 
+        RowBox[{"Classify", "[", 
+         RowBox[{"trainingPatterns", ",", " ", 
+          RowBox[{"Method", " ", "\[Rule]", "#"}], ",", " ", 
+          RowBox[{"PerformanceGoal", "\[Rule]", "\"\<TrainingSpeed\>\""}]}], 
+         "]"}], "&"}], "/@", "  ", "methods"}]}], ";", "\[IndentingNewLine]", 
+     
+     RowBox[{"(*", 
+      RowBox[{
+       RowBox[{"If", " ", "[", 
+        RowBox[{
+         RowBox[{"i", " ", "\[Equal]", " ", "sampleSize"}], ",", " ", 
+         RowBox[{
+          RowBox[{
+           RowBox[{"Print", "[", 
+            RowBox[{"ClassifierInformation", "[", "#", "]"}], "]"}], " ", 
+           "&"}], " ", "/@", " ", "predictors"}]}], "]"}], ";"}], "*)"}], 
+     "\[IndentingNewLine]", 
+     RowBox[{
+      RowBox[{
+       RowBox[{"#", "[", 
+        RowBox[{"Keys", "[", "testPatterns", "]"}], "]"}], " ", "&"}], " ", "/@",
+       "  ", "predictors"}]}], "\[IndentingNewLine]", ",", " ", 
+    RowBox[{"{", 
+     RowBox[{"i", ",", "sampleSize", ",", 
+      RowBox[{"Length", "[", "priceChanges", "]"}]}], "}"}]}], 
+   "]"}]}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"realPrices", " ", "=", " ", 
    RowBox[{"allRealPrices", "[", 
@@ -2094,956 +1275,172 @@ Cell[BoxData[{
  RowBox[{"AppendTo", "[", 
   RowBox[{"methods", ",", "\"\<Naive\>\""}], "]"}], "\[IndentingNewLine]", 
  RowBox[{
-  RowBox[{"predictedPricesAllMethods", " ", "=", " ", 
-   RowBox[{
-    RowBox[{"Append", "[", 
-     RowBox[{
-      RowBox[{"predictedPricesAllMethods", "\[Transpose]"}], ",", 
-      "beforeRealPrices"}], "]"}], "\[Transpose]"}]}], 
-  ";"}], "\[IndentingNewLine]"}], "Input",
+  RowBox[{
+   RowBox[{"predictedPricesAllMethods", " ", "=", " ", 
+    RowBox[{
+     RowBox[{"Append", "[", 
+      RowBox[{
+       RowBox[{"predictedPricesAllMethods", "\[Transpose]"}], ",", 
+       "beforeRealPrices"}], "]"}], "\[Transpose]"}]}], ";"}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{
-  3.6393283154469957`*^9, {3.639328509166555*^9, 3.6393285932602377`*^9}}],
-
-Cell[CellGroupData[{
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Classifier information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"Naive bayes classifier\"\>"},
-             {
-              StyleBox["\<\"Number of classes\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "2"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "Naive bayes classifier", "Number of classes" -> 2, 
-   "Number of features" -> 1, "Number of training examples" -> 18, 
-   "Number of extracted features" -> 1]]], "Print",
- CellChangeTimes->{
-  3.639328524471233*^9, {3.6393285731587*^9, 3.6393286157400417`*^9}}],
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Classifier information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"Logistic regression\"\>"},
-             {
-              StyleBox["\<\"Number of classes\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "2"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"L1 regularization coefficient\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "0"},
-             {
-              StyleBox["\<\"L2 regularization coefficient\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1.`"}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "Logistic regression", "Number of classes" -> 2, 
-   "Number of features" -> 1, "Number of training examples" -> 18, 
-   "Number of extracted features" -> 1, "L1 regularization coefficient" -> 0, 
-   "L2 regularization coefficient" -> 1.]]], "Print",
- CellChangeTimes->{
-  3.639328524471233*^9, {3.6393285731587*^9, 3.63932861575948*^9}}],
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Classifier information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"K-nearest neighbors\"\>"},
-             {
-              StyleBox["\<\"Number of classes\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "2"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of neighbors\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "5"},
-             {
-              StyleBox["\<\"Distance function\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "EuclideanDistance"}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "K-nearest neighbors", "Number of classes" -> 2, 
-   "Number of features" -> 1, "Number of training examples" -> 18, 
-   "Number of extracted features" -> 1, "Number of neighbors" -> 5, 
-   "Distance function" -> EuclideanDistance]]], "Print",
- CellChangeTimes->{
-  3.639328524471233*^9, {3.6393285731587*^9, 3.639328615810526*^9}}],
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Classifier information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"Neural network\"\>"},
-             {
-              StyleBox["\<\"Number of classes\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "2"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"L1 regularization coefficient\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "0"},
-             {
-              StyleBox["\<\"L2 regularization coefficient\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "0.1`"},
-             {
-              StyleBox["\<\"Number of hidden layers\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Hidden nodes\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], 
-              TemplateBox[{",","\",\"","2"},
-               "RowWithSeparators"]},
-             {
-              StyleBox["\<\"Hidden layer activation functions\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], 
-              TemplateBox[{",","\",\"","\"Tanh\""},
-               "RowWithSeparators"]}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "Neural network", "Number of classes" -> 2, 
-   "Number of features" -> 1, "Number of training examples" -> 18, 
-   "Number of extracted features" -> 1, "L1 regularization coefficient" -> 0, 
-   "L2 regularization coefficient" -> 0.1, "Number of hidden layers" -> 1, 
-   "Hidden nodes" -> Row[{2}, ","], "Hidden layer activation functions" -> 
-   Row[{"Tanh"}, ","]]]], "Print",
- CellChangeTimes->{
-  3.639328524471233*^9, {3.6393285731587*^9, 3.639328615856591*^9}}],
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Classifier information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"Support vector machine\"\>"},
-             {
-              StyleBox["\<\"Number of classes\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "2"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Kernel type\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"Radial basis function\"\>"},
-             {
-              StyleBox["\<\"Soft margin parameter\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "Support vector machine", "Number of classes" -> 2, 
-   "Number of features" -> 1, "Number of training examples" -> 18, 
-   "Number of extracted features" -> 1, "Kernel type" -> 
-   "Radial basis function", "Soft margin parameter" -> 1]]], "Print",
- CellChangeTimes->{
-  3.639328524471233*^9, {3.6393285731587*^9, 3.6393286158889427`*^9}}],
-
-Cell[BoxData[
- InterpretationBox[
-  TagBox[
-   StyleBox[
-    FrameBox[GridBox[{
-       {
-        ItemBox[
-         FrameBox[
-          StyleBox["\<\"Classifier information\"\>", "SuggestionsBarText",
-           StripOnInput->False,
-           FontSize->Larger],
-          FrameMargins->{{10, 0}, {-5, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->{Left, Bottom},
-         Background->RGBColor[0.93119, 0.93119, 0.93119],
-         Frame->{{False, False}, {True, False}},
-         FrameStyle->Opacity[0.1],
-         ItemSize->{Automatic, 1},
-         StripOnInput->False]},
-       {
-        ItemBox[
-         FrameBox[
-          TagBox[GridBox[{
-             {
-              StyleBox["\<\"Method\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "\<\"Random forest\"\>"},
-             {
-              StyleBox["\<\"Number of classes\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "2"},
-             {
-              StyleBox["\<\"Number of features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of training examples\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "18"},
-             {
-              StyleBox["\<\"Number of extracted features\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "1"},
-             {
-              StyleBox["\<\"Number of trees\"\>",
-               StripOnInput->False,
-               LineOpacity->0.8,
-               FrontFaceOpacity->0.8,
-               BackFaceOpacity->0.8,
-               Opacity->0.8,
-               FontWeight->"SemiBold",
-               FontOpacity->0.8], "20"}
-            },
-            AutoDelete->False,
-            
-            BaseStyle->{
-             FontWeight -> "Light", FontFamily -> 
-              ".Helvetica Neue DeskInterface", NumberMarks -> False},
-            
-            GridBoxAlignment->{
-             "Columns" -> {Right, {Left}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{Baseline}}, "RowsIndexed" -> {}},
-            GridBoxDividers->{"Columns" -> {False, {
-                 Opacity[0.15]}, False}},
-            
-            GridBoxItemSize->{
-             "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, 
-              "Rows" -> {{1.}}, "RowsIndexed" -> {}},
-            GridBoxSpacings->{"Columns" -> {
-                Offset[0.27999999999999997`], 
-                Offset[2.0999999999999996`], {
-                 Offset[1.75]}, 
-                Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-                Offset[0.2], {
-                 Offset[0.8]}, 
-                Offset[0.2]}, "RowsIndexed" -> {}}],
-           "Grid"],
-          FrameMargins->{{10, 10}, {10, 5}},
-          FrameStyle->None,
-          StripOnInput->False],
-         Alignment->Left,
-         BaseStyle->{Deployed -> False},
-         StripOnInput->False]}
-      },
-      DefaultBaseStyle->"Column",
-      GridBoxAlignment->{
-       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
-        "RowsIndexed" -> {}},
-      GridBoxDividers->{
-       "Columns" -> {{False}}, "ColumnsIndexed" -> {}, "Rows" -> {{False}}, 
-        "RowsIndexed" -> {}},
-      GridBoxItemSize->{
-       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
-        "RowsIndexed" -> {}},
-      GridBoxSpacings->{"Columns" -> {
-          Offset[0.27999999999999997`], {
-           Offset[0.5599999999999999]}, 
-          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
-          Offset[0.2], 
-          Offset[1.2], {
-           Offset[0.4]}, 
-          Offset[0.2]}, "RowsIndexed" -> {}}],
-     Background->RGBColor[0.9802, 0.9802, 0.9802],
-     FrameMargins->{{0, 0}, {0, 0}},
-     FrameStyle->GrayLevel[0.85],
-     RoundingRadius->5,
-     StripOnInput->False],
-    StripOnInput->False,
-    LineBreakWithin->False],
-   Deploy,
-   DefaultBaseStyle->"Deploy"],
-  Association[
-  "Method" -> "Random forest", "Number of classes" -> 2, "Number of features" -> 
-   1, "Number of training examples" -> 18, "Number of extracted features" -> 
-   1, "Number of trees" -> 20]]], "Print",
- CellChangeTimes->{
-  3.639328524471233*^9, {3.6393285731587*^9, 3.639328615921958*^9}}]
-}, Open  ]],
+  3.6393283154469957`*^9, {3.639328509166555*^9, 3.6393285932602377`*^9}, {
+   3.639328978312738*^9, 3.639328978642516*^9}, {3.639329050115533*^9, 
+   3.639329050274129*^9}, {3.639329307507063*^9, 3.639329307905937*^9}, {
+   3.639329484978016*^9, 3.6393294851394157`*^9}, {3.639329679518248*^9, 
+   3.639329680403595*^9}, {3.639330788768412*^9, 3.639330790031825*^9}, {
+   3.6393310207632313`*^9, 3.639331027819089*^9}, {3.6393311531620483`*^9, 
+   3.639331169076087*^9}, {3.6393313420994787`*^9, 3.639331344226624*^9}, {
+   3.639331381298555*^9, 3.6393313822579823`*^9}, {3.6393314450215063`*^9, 
+   3.639331447140607*^9}, {3.639331502198296*^9, 3.6393315038043203`*^9}, {
+   3.639384360616971*^9, 3.639384360696185*^9}, {3.63938453979674*^9, 
+   3.639384542186225*^9}, 3.639384774748145*^9, {3.639384888686368*^9, 
+   3.6393849061126423`*^9}, {3.639385033213779*^9, 3.639385043519874*^9}, {
+   3.639385358556423*^9, 3.6393853799269867`*^9}, {3.639386238480872*^9, 
+   3.639386238560582*^9}, {3.639386299491623*^9, 3.639386322181839*^9}, {
+   3.639386370592433*^9, 3.63938637091987*^9}, {3.6393865205729303`*^9, 
+   3.639386528991028*^9}, {3.639386690798424*^9, 3.6393867132546673`*^9}, {
+   3.6393868649760323`*^9, 3.6393868854809313`*^9}, 3.639387266349161*^9}],
 
 Cell[BoxData[
  RowBox[{"{", 
-  RowBox[{"\<\"NaiveBayes\"\>", ",", "\<\"LogisticRegression\"\>", 
-   ",", "\<\"NearestNeighbors\"\>", ",", "\<\"NeuralNetwork\"\>", 
-   ",", "\<\"SupportVectorMachine\"\>", ",", "\<\"RandomForest\"\>", 
-   ",", "\<\"Naive\"\>"}], "}"}]], "Output",
+  RowBox[{
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", "1", "}"}], ",", 
+   RowBox[{"{", 
+    RowBox[{"-", "1"}], "}"}], ",", 
+   RowBox[{"{", "1", "}"}]}], "}"}]], "Output",
  CellChangeTimes->{
-  3.639328523978406*^9, 3.6393285726866283`*^9, {3.639328611507155*^9, 
-   3.639328632926053*^9}}]
+  3.639331046768961*^9, 3.639331191565423*^9, 3.639331350593161*^9, {
+   3.6393313848979816`*^9, 3.639331450298408*^9}, 3.6393315398742437`*^9, {
+   3.6393845435806303`*^9, 3.6393845555328903`*^9}, 3.639384917855115*^9, 
+   3.639384985291891*^9, 3.6393852429968987`*^9, 3.6393853144094877`*^9, {
+   3.639385376796013*^9, 3.639385395486915*^9}, 3.6393862479388533`*^9, {
+   3.639386283291767*^9, 3.6393863334786777`*^9}, 3.639386391536714*^9, {
+   3.6393865276945467`*^9, 3.639386545283148*^9}, {3.63938687957948*^9, 
+   3.639386893062374*^9}}],
+
+Cell[BoxData[
+ RowBox[{"{", 
+  RowBox[{"\<\"NeuralNetwork\"\>", ",", "\<\"Naive\"\>"}], "}"}]], "Output",
+ CellChangeTimes->{
+  3.639331046768961*^9, 3.639331191565423*^9, 3.639331350593161*^9, {
+   3.6393313848979816`*^9, 3.639331450298408*^9}, 3.6393315398742437`*^9, {
+   3.6393845435806303`*^9, 3.6393845555328903`*^9}, 3.639384917855115*^9, 
+   3.639384985291891*^9, 3.6393852429968987`*^9, 3.6393853144094877`*^9, {
+   3.639385376796013*^9, 3.639385395486915*^9}, 3.6393862479388533`*^9, {
+   3.639386283291767*^9, 3.6393863334786777`*^9}, 3.639386391536714*^9, {
+   3.6393865276945467`*^9, 3.639386545283148*^9}, {3.63938687957948*^9, 
+   3.6393868930681057`*^9}}]
 }, Open  ]],
 
 Cell[CellGroupData[{
@@ -3087,7 +1484,7 @@ Cell[BoxData[{
         RowBox[{
          RowBox[{
           RowBox[{"predictedPrices", "[", 
-           RowBox[{"[", "t", "]"}], "]"}], " ", ">", " ", "0"}], ",", " ", 
+           RowBox[{"[", "t", "]"}], "]"}], " ", ">", " ", "0"}], ",", 
          "\[IndentingNewLine]", 
          RowBox[{
           RowBox[{"money", " ", "*=", " ", 
@@ -3103,29 +1500,35 @@ Cell[BoxData[{
       RowBox[{"measures", ",", 
        RowBox[{"{", 
         RowBox[{
-         RowBox[{"N", "[", 
-          RowBox[{
+         RowBox[{
+          RowBox[{"N", "[", 
            RowBox[{
             RowBox[{"(", 
-             RowBox[{"money", "-", "1"}], ")"}], "*", "100"}], ",", "3"}], 
-          "]"}], ",", " ", 
+             RowBox[{"money", "-", "1"}], ")"}], ",", "3"}], "]"}], "*", 
+          "100"}], ",", " ", 
          RowBox[{
           RowBox[{"N", "[", 
            RowBox[{"movementAccuracy", ",", "3"}], "]"}], "*", "100"}]}], 
         "}"}]}], "]"}]}]}], "\[IndentingNewLine]", "]"}], 
   "\[IndentingNewLine]", "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
- RowBox[{"table", " ", "=", " ", 
-  RowBox[{"TableForm", "[", 
-   RowBox[{"measures", ",", 
-    RowBox[{"TableHeadings", "\[Rule]", 
-     RowBox[{"{", 
-      RowBox[{"methods", ",", " ", 
-       RowBox[{"{", 
-        RowBox[{
-        "\"\<Investment profit\>\"", ",", " ", "\"\<Movement accuracy\>\""}], 
-        "}"}]}], "}"}]}]}], "]"}]}]}], "Input",
+ RowBox[{
+  RowBox[{"table", " ", "=", " ", 
+   RowBox[{"TableForm", "[", 
+    RowBox[{"measures", ",", 
+     RowBox[{"TableHeadings", "\[Rule]", 
+      RowBox[{"{", 
+       RowBox[{"methods", ",", " ", 
+        RowBox[{"{", 
+         RowBox[{
+         "\"\<Investment profit\>\"", ",", " ", "\"\<Movement accuracy\>\""}],
+          "}"}]}], "}"}]}]}], "]"}]}], 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", "ListPlot", "\
+\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.6393283317803383`*^9, 3.639328494592023*^9}, {
-  3.63932866077357*^9, 3.6393287306590223`*^9}}],
+  3.63932866077357*^9, 3.6393287306590223`*^9}, {3.639328772752907*^9, 
+  3.639328793122508*^9}, {3.639328837965007*^9, 3.6393288858635807`*^9}, {
+  3.6393316141779413`*^9, 3.639331615416635*^9}, {3.6393852657194357`*^9, 
+  3.63938526898868*^9}}],
 
 Cell[BoxData[
  TagBox[
@@ -3138,33 +1541,15 @@ Cell[BoxData[
       TagBox["\<\"Movement accuracy\"\>",
        HoldForm]},
      {
-      TagBox["\<\"NaiveBayes\"\>",
-       HoldForm], "0.29667523964356235`", 
-      "57.14285714285714285714285714285714285706`3."},
-     {
-      TagBox["\<\"LogisticRegression\"\>",
-       HoldForm], 
-      RowBox[{"-", "0.7247244077985604`"}], "50.`3."},
-     {
-      TagBox["\<\"NearestNeighbors\"\>",
-       HoldForm], "2.4633500310348166`", 
-      "59.52380952380952380952380952380952380941`3."},
-     {
       TagBox["\<\"NeuralNetwork\"\>",
-       HoldForm], "0.5121687021648613`", 
-      "52.38095238095238095238095238095238095235`3."},
-     {
-      TagBox["\<\"SupportVectorMachine\"\>",
        HoldForm], 
-      RowBox[{"-", "1.3263474178571988`"}], 
-      "42.85714285714285714285714285714285714294`3."},
-     {
-      TagBox["\<\"RandomForest\"\>",
-       HoldForm], "2.134248999481003`", 
-      "59.52380952380952380952380952380952380941`3."},
+      RowBox[{"-", "2.031118390278419`"}], 
+      "44.87179487179487179487179487179487179491`3."},
      {
       TagBox["\<\"Naive\"\>",
-       HoldForm], "2.349115154383763`", "174505.4761904762`"}
+       HoldForm], 
+      RowBox[{"-", "0.610888992458658`"}], 
+      RowBox[{"-", "7064.935128205128`"}]}
     },
     GridBoxAlignment->{
      "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
@@ -3183,17 +1568,283 @@ Cell[BoxData[
   Function[BoxForm`e$, 
    TableForm[
    BoxForm`e$, 
-    TableHeadings -> {{
-      "NaiveBayes", "LogisticRegression", "NearestNeighbors", "NeuralNetwork",
-        "SupportVectorMachine", "RandomForest", "Naive"}, {
+    TableHeadings -> {{"NeuralNetwork", "Naive"}, {
       "Investment profit", "Movement accuracy"}}]]]], "Output",
- CellChangeTimes->{{3.639328461301738*^9, 3.639328495130718*^9}, {
-  3.639328612398087*^9, 3.639328633379184*^9}, {3.639328665343213*^9, 
-  3.639328731478394*^9}}]
-}, Open  ]]
+ CellChangeTimes->{
+  3.639328965716292*^9, 3.63932903975667*^9, 3.6393291254027147`*^9, 
+   3.639329261782962*^9, 3.639329466352448*^9, 3.639329603177359*^9, 
+   3.639331064177038*^9, {3.639331396080666*^9, 3.639331410410096*^9}, {
+   3.639331440462308*^9, 3.639331454685176*^9}, 3.639331617399762*^9, {
+   3.639384563472378*^9, 3.639384570809306*^9}, 3.6393849213591833`*^9, 
+   3.639384990498595*^9, 3.639385245593626*^9, {3.63938531767876*^9, 
+   3.639385327573106*^9}, {3.639386289970709*^9, 3.6393863183409863`*^9}, 
+   3.639386350062302*^9, 3.639386517515521*^9, 3.63938655048822*^9}],
+
+Cell[BoxData["ListPlot"], "Output",
+ CellChangeTimes->{
+  3.639328965716292*^9, 3.63932903975667*^9, 3.6393291254027147`*^9, 
+   3.639329261782962*^9, 3.639329466352448*^9, 3.639329603177359*^9, 
+   3.639331064177038*^9, {3.639331396080666*^9, 3.639331410410096*^9}, {
+   3.639331440462308*^9, 3.639331454685176*^9}, 3.639331617399762*^9, {
+   3.639384563472378*^9, 3.639384570809306*^9}, 3.6393849213591833`*^9, 
+   3.639384990498595*^9, 3.639385245593626*^9, {3.63938531767876*^9, 
+   3.639385327573106*^9}, {3.639386289970709*^9, 3.6393863183409863`*^9}, 
+   3.639386350062302*^9, 3.639386517515521*^9, 3.6393865504965677`*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.639328959568104*^9, 3.639328959574736*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{"BinomialDistribution", "[", 
+  RowBox[{"14", ",", "0.5"}], "]"}], "\[IndentingNewLine]", 
+ RowBox[{"CDF", "[", 
+  RowBox[{
+   RowBox[{"BinomialDistribution", "[", 
+    RowBox[{"5", ",", ".6"}], "]"}], ",", "x"}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.639417987549396*^9, 3.6394180133236237`*^9}, {
+   3.639418050959914*^9, 3.6394180510854816`*^9}, 3.6394192931262627`*^9, {
+   3.639419484697239*^9, 3.639419484843746*^9}}],
+
+Cell[BoxData[
+ RowBox[{"BinomialDistribution", "[", 
+  RowBox[{"14", ",", "0.5`"}], "]"}]], "Output",
+ CellChangeTimes->{3.639419488156361*^9}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {
+        RowBox[{"BetaRegularized", "[", 
+         RowBox[{"0.4`", ",", 
+          RowBox[{"5", "-", 
+           RowBox[{"Floor", "[", "x", "]"}]}], ",", 
+          RowBox[{"1", "+", 
+           RowBox[{"Floor", "[", "x", "]"}]}]}], "]"}], 
+        RowBox[{"0", "\[LessEqual]", "x", "\[LessEqual]", "5"}]},
+       {"1", 
+        RowBox[{"x", ">", "5"}]},
+       {"0", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}},
+      GridBoxItemSize->{
+       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+        "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}},
+   GridBoxItemSize->{
+    "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+     "RowsIndexed" -> {}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}, "RowsIndexed" -> {}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{3.639419488159095*^9}]
+}, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"PiecewiseExpand", "[", 
+  RowBox[{"Piecewise", "[", 
+   RowBox[{
+    RowBox[{"{", 
+     RowBox[{
+      RowBox[{"{", 
+       RowBox[{
+        RowBox[{"BetaRegularized", "[", 
+         RowBox[{"0.4`", ",", 
+          RowBox[{"5", "-", 
+           RowBox[{"Floor", "[", "x", "]"}]}], ",", 
+          RowBox[{"1", "+", 
+           RowBox[{"Floor", "[", "x", "]"}]}]}], "]"}], ",", 
+        RowBox[{"0", "\[LessEqual]", "x", "\[LessEqual]", "5"}]}], "}"}], ",", 
+      RowBox[{"{", 
+       RowBox[{"1", ",", 
+        RowBox[{"x", ">", "5"}]}], "}"}]}], "}"}], ",", "0"}], "]"}], 
+  "]"}]], "Input",
+ NumberMarks->False],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  TagBox[GridBox[{
+     {"\[Piecewise]", GridBox[{
+        {"0.010240000000000003`", 
+         RowBox[{"0", "\[LessEqual]", "x", "<", "1"}]},
+        {"0.08704000000000005`", 
+         RowBox[{"1", "\[LessEqual]", "x", "<", "2"}]},
+        {"0.3174400000000001`", 
+         RowBox[{"2", "\[LessEqual]", "x", "<", "3"}]},
+        {"0.6630400000000001`", 
+         RowBox[{"3", "\[LessEqual]", "x", "<", "4"}]},
+        {"0.9222400000000001`", 
+         RowBox[{"4", "\[LessEqual]", "x", "<", "5"}]},
+        {"1", 
+         RowBox[{"x", ">", "5"}]},
+        {"1.`", 
+         RowBox[{"x", "\[Equal]", "5"}]},
+        {"0", 
+         TagBox["True",
+          "PiecewiseDefault",
+          AutoDelete->True]}
+       },
+       AllowedDimensions->{2, Automatic},
+       Editable->True,
+       GridBoxAlignment->{
+        "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}},
+          "RowsIndexed" -> {}},
+       GridBoxItemSize->{
+        "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+         "RowsIndexed" -> {}},
+       GridBoxSpacings->{"Columns" -> {
+           Offset[0.27999999999999997`], {
+            Offset[0.84]}, 
+           Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+           Offset[0.2], {
+            Offset[0.4]}, 
+           Offset[0.2]}, "RowsIndexed" -> {}},
+       Selectable->True]}
+    },
+    GridBoxAlignment->{
+     "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+      "RowsIndexed" -> {}},
+    GridBoxItemSize->{
+     "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+      "RowsIndexed" -> {}},
+    GridBoxSpacings->{"Columns" -> {
+        Offset[0.27999999999999997`], {
+         Offset[0.35]}, 
+        Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+        Offset[0.2], {
+         Offset[0.4]}, 
+        Offset[0.2]}, "RowsIndexed" -> {}}],
+   "Piecewise",
+   DeleteWithContents->True,
+   Editable->False,
+   SelectWithContents->True,
+   Selectable->False], "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"n", " ", "=", " ", "16"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"Probability", "[", 
+   RowBox[{
+    RowBox[{"x", "\[GreaterEqual]", 
+     RowBox[{"n", "*", "0.76"}]}], ",", 
+    RowBox[{"x", "\[Distributed]", 
+     RowBox[{"BinomialDistribution", "[", 
+      RowBox[{"n", ",", "0.5"}], "]"}]}]}], "]"}], " ", "*", " ", "100"}]}], \
+"Input",
+ CellChangeTimes->{{3.639419617555094*^9, 3.6394197732338533`*^9}, {
+  3.639420080191324*^9, 3.639420112782856*^9}, {3.639420153418425*^9, 
+  3.639420160294065*^9}}],
+
+Cell[BoxData[
+ TagBox[GridBox[{
+    {"\[Piecewise]", GridBox[{
+       {"0.010240000000000003`", 
+        RowBox[{"0", "\[LessEqual]", "x", "<", "1"}]},
+       {"0.08704000000000005`", 
+        RowBox[{"1", "\[LessEqual]", "x", "<", "2"}]},
+       {"0.3174400000000001`", 
+        RowBox[{"2", "\[LessEqual]", "x", "<", "3"}]},
+       {"0.6630400000000001`", 
+        RowBox[{"3", "\[LessEqual]", "x", "<", "4"}]},
+       {"0.9222400000000001`", 
+        RowBox[{"4", "\[LessEqual]", "x", "<", "5"}]},
+       {"1", 
+        RowBox[{"x", ">", "5"}]},
+       {"1.`", 
+        RowBox[{"x", "\[Equal]", "5"}]},
+       {"0", 
+        TagBox["True",
+         "PiecewiseDefault",
+         AutoDelete->True]}
+      },
+      AllowedDimensions->{2, Automatic},
+      Editable->True,
+      GridBoxAlignment->{
+       "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+        "RowsIndexed" -> {}},
+      GridBoxItemSize->{
+       "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+        "RowsIndexed" -> {}},
+      GridBoxSpacings->{"Columns" -> {
+          Offset[0.27999999999999997`], {
+           Offset[0.84]}, 
+          Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+          Offset[0.2], {
+           Offset[0.4]}, 
+          Offset[0.2]}, "RowsIndexed" -> {}},
+      Selectable->True]}
+   },
+   GridBoxAlignment->{
+    "Columns" -> {{Left}}, "ColumnsIndexed" -> {}, "Rows" -> {{Baseline}}, 
+     "RowsIndexed" -> {}},
+   GridBoxItemSize->{
+    "Columns" -> {{Automatic}}, "ColumnsIndexed" -> {}, "Rows" -> {{1.}}, 
+     "RowsIndexed" -> {}},
+   GridBoxSpacings->{"Columns" -> {
+       Offset[0.27999999999999997`], {
+        Offset[0.35]}, 
+       Offset[0.27999999999999997`]}, "ColumnsIndexed" -> {}, "Rows" -> {
+       Offset[0.2], {
+        Offset[0.4]}, 
+       Offset[0.2]}, "RowsIndexed" -> {}}],
+  "Piecewise",
+  DeleteWithContents->True,
+  Editable->False,
+  SelectWithContents->True,
+  Selectable->False]], "Output",
+ CellChangeTimes->{{3.6394197096574793`*^9, 3.639419773587369*^9}, {
+  3.63942008329865*^9, 3.639420113115624*^9}, {3.639420153873798*^9, 
+  3.6394201605985413`*^9}}],
+
+Cell[BoxData["16"], "Output",
+ CellChangeTimes->{{3.6394197096574793`*^9, 3.639419773587369*^9}, {
+  3.63942008329865*^9, 3.639420113115624*^9}, {3.639420153873798*^9, 
+  3.6394201606070337`*^9}}],
+
+Cell[BoxData["1.06353759765625`"], "Output",
+ CellChangeTimes->{{3.6394197096574793`*^9, 3.639419773587369*^9}, {
+  3.63942008329865*^9, 3.639420113115624*^9}, {3.639420153873798*^9, 
+  3.639420160612207*^9}}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.639419702158897*^9, 3.639419702172627*^9}}],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.6394197049429913`*^9, 3.639419704950356*^9}}]
 },
-WindowSize->{1595, 1006},
-WindowMargins->{{Automatic, 154}, {Automatic, 49}},
+WindowSize->{1747, 903},
+WindowMargins->{{Automatic, 50}, {Automatic, 39}},
 FrontEndVersion->"10.0 for Mac OS X x86 (32-bit, 64-bit Kernel) (September 9, \
 2014)",
 StyleDefinitions->"Default.nb"
@@ -3210,59 +1861,47 @@ CellTagsIndex->{}
 (*NotebookFileOutline
 Notebook[{
 Cell[CellGroupData[{
-Cell[580, 22, 5731, 99, 131, "Input"],
-Cell[6314, 123, 1319, 18, 28, "Output"],
-Cell[7636, 143, 9182, 184, 239, "Output"],
-Cell[16821, 329, 1333, 18, 28, "Output"]
+Cell[580, 22, 6549, 110, 131, "Input"],
+Cell[7132, 134, 2142, 29, 28, "Output"],
+Cell[9277, 165, 12480, 235, 249, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[18191, 352, 6885, 139, 301, "Input"],
-Cell[25079, 493, 508, 9, 28, "Output"],
-Cell[CellGroupData[{
-Cell[25612, 506, 5609, 148, 185, "Print"],
-Cell[31224, 656, 6882, 180, 251, "Print"],
-Cell[38109, 838, 5213, 138, 163, "Print"],
-Cell[43325, 978, 5698, 150, 185, "Print"]
-}, Open  ]]
+Cell[21794, 405, 7805, 156, 335, "Input"],
+Cell[29602, 563, 598, 11, 28, "Output"],
+Cell[30203, 576, 483, 8, 28, "Output"],
+Cell[30689, 586, 520, 9, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[49072, 1134, 218, 3, 114, InheritFromParent],
-Cell[49293, 1139, 226, 5, 28, "Output"],
-Cell[CellGroupData[{
-Cell[49544, 1148, 5204, 142, 185, "Print"],
-Cell[54751, 1292, 6476, 174, 251, "Print"],
-Cell[61230, 1468, 4807, 132, 163, "Print"],
-Cell[66040, 1602, 5218, 142, 185, "Print"]
-}, Open  ]],
-Cell[71273, 1747, 252, 5, 28, "Output"]
+Cell[31246, 600, 9979, 213, 777, "Input"],
+Cell[41228, 815, 1757, 47, 76, "Output"],
+Cell[42988, 864, 188, 3, 28, "Output"],
+Cell[43179, 869, 14598, 294, 244, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[71562, 1757, 5939, 128, 403, "Input"],
-Cell[77504, 1887, 2586, 65, 115, "Output"],
-Cell[80093, 1954, 644, 9, 28, "Output"]
-}, Open  ]],
-Cell[80752, 1966, 92, 1, 28, "Input"],
-Cell[CellGroupData[{
-Cell[80869, 1971, 213, 6, 28, "Input"],
-Cell[81085, 1979, 290, 7, 47, "Output"]
-}, Open  ]],
-Cell[81390, 1989, 146, 2, 63, "Input"],
-Cell[CellGroupData[{
-Cell[81561, 1995, 4312, 109, 335, "Input"],
-Cell[CellGroupData[{
-Cell[85898, 2108, 4875, 133, 163, "Print"],
-Cell[90776, 2243, 5611, 152, 207, "Print"],
-Cell[96390, 2397, 5597, 152, 207, "Print"],
-Cell[101990, 2551, 6873, 185, 273, "Print"],
-Cell[108866, 2738, 5615, 152, 207, "Print"],
-Cell[114484, 2892, 5198, 142, 185, "Print"]
-}, Open  ]],
-Cell[119697, 3037, 397, 8, 28, "Output"]
+Cell[57814, 1168, 5761, 134, 369, "Input"],
+Cell[63578, 1304, 3989, 125, 46, "Output"],
+Cell[67570, 1431, 671, 11, 28, "Output"]
 }, Open  ]],
 Cell[CellGroupData[{
-Cell[120131, 3050, 3040, 77, 267, "Input"],
-Cell[123174, 3129, 2291, 62, 160, "Output"]
-}, Open  ]]
+Cell[68278, 1447, 3341, 83, 318, "Input"],
+Cell[71622, 1532, 1953, 48, 65, "Output"],
+Cell[73578, 1582, 630, 9, 28, "Output"]
+}, Open  ]],
+Cell[74223, 1594, 92, 1, 28, "Input"],
+Cell[CellGroupData[{
+Cell[74340, 1599, 475, 10, 63, "Input"],
+Cell[74818, 1611, 143, 3, 28, "Output"],
+Cell[74964, 1616, 1849, 53, 65, "Output"]
+}, Open  ]],
+Cell[76828, 1672, 638, 19, 28, "Input"],
+Cell[CellGroupData[{
+Cell[77491, 1695, 2617, 70, 212, InheritFromParent],
+Cell[80111, 1767, 2154, 59, 149, "Output"],
+Cell[82268, 1828, 196, 3, 28, "Output"],
+Cell[82467, 1833, 209, 3, 28, "Output"]
+}, Open  ]],
+Cell[82691, 1839, 92, 1, 28, InheritFromParent],
+Cell[82786, 1842, 94, 1, 28, InheritFromParent]
 }
 ]
 *)
