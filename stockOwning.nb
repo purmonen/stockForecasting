@@ -10,16 +10,22 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     84531,       1900]
-NotebookOptionsPosition[     82884,       1845]
-NotebookOutlinePosition[     83243,       1861]
-CellTagsIndexPosition[     83200,       1858]
+NotebookDataLength[     85439,       1933]
+NotebookOptionsPosition[     83628,       1873]
+NotebookOutlinePosition[     83987,       1889]
+CellTagsIndexPosition[     83944,       1886]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
 Notebook[{
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  StyleBox[
+   RowBox[{"Stock", " ", "data"}], "Title"]}]], "Input",
+ CellChangeTimes->{{3.6394817813497458`*^9, 3.639481781826734*^9}}],
 
 Cell[CellGroupData[{
+
 Cell[BoxData[{
  RowBox[{
   RowBox[{"stockData", " ", "=", "  ", 
@@ -130,7 +136,8 @@ Cell[BoxData[{
    3.6393852832213287`*^9, 3.639385294090139*^9}, {3.639385345207466*^9, 
    3.639385345299693*^9}, {3.639387573866659*^9, 3.639387574598542*^9}, {
    3.6393876445085583`*^9, 3.639387644927718*^9}, {3.6394211316036463`*^9, 
-   3.639421135230335*^9}, {3.639422934845027*^9, 3.639422935280756*^9}}],
+   3.639421135230335*^9}, {3.639422934845027*^9, 3.639422935280756*^9}, 
+   3.639481687346161*^9, 3.6394817771843243`*^9}],
 
 Cell[BoxData["455"], "Output",
  CellChangeTimes->{{3.639301859665298*^9, 3.6393018644901037`*^9}, {
@@ -401,6 +408,11 @@ fCLbpP8F52+8j/Pfpvzvcf7ChVPJ7/qV5BfOLHou+l+X2iic
    3.6394210874994287`*^9, 3.639421135863529*^9, 3.6394229361922703`*^9}]
 }, Open  ]],
 
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  StyleBox["Predictors", "Title"]}]], "Input",
+ CellChangeTimes->{{3.639481795709484*^9, 3.639481802392414*^9}}],
+
 Cell[CellGroupData[{
 
 Cell[BoxData[{
@@ -596,193 +608,197 @@ Cell[BoxData[
    3.6394229865597973`*^9}]
 }, Open  ]],
 
-Cell[CellGroupData[{
-
 Cell[BoxData[
  RowBox[{"\[IndentingNewLine]", 
-  RowBox[{
+  StyleBox[
+   RowBox[{"Predictor", " ", "results"}], "Title"]}]], "Input",
+ CellChangeTimes->{{3.639481807018673*^9, 3.639481812294546*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"measures", " ", "=", " ", 
+   RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"For", "[", 
    RowBox[{
-    RowBox[{"measures", " ", "=", " ", 
-     RowBox[{"{", "}"}]}], ";"}], "\[IndentingNewLine]", 
-   RowBox[{"For", "[", 
+    RowBox[{"i", "=", "1"}], ",", " ", 
+    RowBox[{"i", " ", "\[LessEqual]", 
+     RowBox[{"Length", "[", "methods", "]"}]}], ",", " ", 
+    RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
     RowBox[{
-     RowBox[{"i", "=", "1"}], ",", " ", 
-     RowBox[{"i", " ", "\[LessEqual]", 
-      RowBox[{"Length", "[", "methods", "]"}]}], ",", " ", 
-     RowBox[{"i", "++"}], ",", "\[IndentingNewLine]", 
-     RowBox[{
-      RowBox[{"predictedPrices", " ", "=", " ", 
-       RowBox[{"predictedPricesAllMethods", "[", 
-        RowBox[{"[", 
-         RowBox[{"All", ",", "i"}], "]"}], "]"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
-      RowBox[{"mae", " ", "=", " ", 
+     RowBox[{"predictedPrices", " ", "=", " ", 
+      RowBox[{"predictedPricesAllMethods", "[", 
+       RowBox[{"[", 
+        RowBox[{"All", ",", "i"}], "]"}], "]"}]}], ";", "\[IndentingNewLine]",
+      "\[IndentingNewLine]", 
+     RowBox[{"mae", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"Total", "[", 
+        RowBox[{"Abs", "[", " ", 
+         RowBox[{"predictedPrices", "-", "realPrices"}], "]"}], "]"}], " ", 
+       "/", " ", 
+       RowBox[{"Length", "[", "realPrices", "]"}]}]}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"mape", " ", "=", " ", 
+      RowBox[{
        RowBox[{
         RowBox[{"Total", "[", 
          RowBox[{"Abs", "[", " ", 
-          RowBox[{"predictedPrices", "-", "realPrices"}], "]"}], "]"}], " ", 
-        "/", " ", 
-        RowBox[{"Length", "[", "realPrices", "]"}]}]}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"mape", " ", "=", " ", 
-       RowBox[{
+          RowBox[{
+           RowBox[{"predictedPrices", "/", "realPrices"}], "-", "1"}], "]"}], 
+         "]"}], " ", "/", " ", 
+        RowBox[{"Length", "[", "realPrices", "]"}]}], "*", "100"}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"movementAccuracy", " ", "=", " ", 
+      RowBox[{
+       RowBox[{"Total", "[", 
         RowBox[{
-         RowBox[{"Total", "[", 
-          RowBox[{"Abs", "[", " ", 
+         RowBox[{"(", 
+          RowBox[{
            RowBox[{
-            RowBox[{"predictedPrices", "/", "realPrices"}], "-", "1"}], "]"}],
-           "]"}], " ", "/", " ", 
-         RowBox[{"Length", "[", "realPrices", "]"}]}], "*", "100"}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
-      RowBox[{"movementAccuracy", " ", "=", " ", 
-       RowBox[{
-        RowBox[{"Total", "[", 
+            RowBox[{"Sign", "[", 
+             RowBox[{"predictedPrices", "-", "beforeRealPrices"}], "]"}], " ",
+             "*", " ", 
+            RowBox[{"Sign", "[", 
+             RowBox[{"realPrices", "-", "beforeRealPrices"}], "]"}]}], "+", 
+           "1"}], ")"}], "/", "2"}], "]"}], " ", "/", " ", 
+       RowBox[{"Length", "[", "realPrices", "]"}]}]}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"money", " ", "=", " ", "1"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"For", " ", "[", 
+      RowBox[{
+       RowBox[{"t", " ", "=", " ", "2"}], ",", " ", 
+       RowBox[{"t", " ", "\[LessEqual]", 
+        RowBox[{"Length", "[", "predictedPrices", "]"}]}], ",", " ", 
+       RowBox[{"t", "++"}], ",", "\[IndentingNewLine]", 
+       RowBox[{"If", " ", "[", 
+        RowBox[{
          RowBox[{
-          RowBox[{"(", 
+          RowBox[{"predictedPrices", "[", 
+           RowBox[{"[", "t", "]"}], "]"}], " ", "\[GreaterEqual]", 
+          RowBox[{"realPrices", "[", 
+           RowBox[{"[", 
+            RowBox[{"t", "-", "1"}], "]"}], "]"}]}], ",", " ", 
+         "\[IndentingNewLine]", 
+         RowBox[{
+          RowBox[{"money", " ", "*=", " ", 
            RowBox[{
-            RowBox[{
-             RowBox[{"Sign", "[", 
-              RowBox[{"predictedPrices", "-", "beforeRealPrices"}], "]"}], 
-             " ", "*", " ", 
-             RowBox[{"Sign", "[", 
-              RowBox[{"realPrices", "-", "beforeRealPrices"}], "]"}]}], "+", 
-            "1"}], ")"}], "/", "2"}], "]"}], " ", "/", " ", 
-        RowBox[{"Length", "[", "realPrices", "]"}]}]}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
-      RowBox[{"money", " ", "=", " ", "1"}], ";", "\[IndentingNewLine]", 
+            RowBox[{"realPrices", "[", 
+             RowBox[{"[", "t", "]"}], "]"}], " ", "/", " ", 
+            RowBox[{"realPrices", "[", 
+             RowBox[{"[", 
+              RowBox[{"t", "-", "1"}], "]"}], "]"}]}]}], ";"}]}], 
+        "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{"moneyNoFees", " ", "=", " ", "money"}], ";", 
+     "\[IndentingNewLine]", "\[IndentingNewLine]", 
+     RowBox[{"money", " ", "=", " ", "1"}], ";", "\[IndentingNewLine]", 
+     RowBox[{"hasInvested", " ", "=", " ", "True"}], ";", 
+     "\[IndentingNewLine]", 
+     RowBox[{
       RowBox[{"For", " ", "[", 
        RowBox[{
         RowBox[{"t", " ", "=", " ", "2"}], ",", " ", 
         RowBox[{"t", " ", "\[LessEqual]", 
          RowBox[{"Length", "[", "predictedPrices", "]"}]}], ",", " ", 
         RowBox[{"t", "++"}], ",", "\[IndentingNewLine]", 
-        RowBox[{"If", " ", "[", 
-         RowBox[{
-          RowBox[{
-           RowBox[{"predictedPrices", "[", 
-            RowBox[{"[", "t", "]"}], "]"}], " ", "\[GreaterEqual]", 
-           RowBox[{"realPrices", "[", 
-            RowBox[{"[", 
-             RowBox[{"t", "-", "1"}], "]"}], "]"}]}], ",", " ", 
-          "\[IndentingNewLine]", 
-          RowBox[{
-           RowBox[{"money", " ", "*=", " ", 
-            RowBox[{
-             RowBox[{"realPrices", "[", 
-              RowBox[{"[", "t", "]"}], "]"}], " ", "/", " ", 
-             RowBox[{"realPrices", "[", 
-              RowBox[{"[", 
-               RowBox[{"t", "-", "1"}], "]"}], "]"}]}]}], ";"}]}], 
-         "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{"moneyNoFees", " ", "=", " ", "money"}], ";", 
-      "\[IndentingNewLine]", "\[IndentingNewLine]", 
-      RowBox[{"money", " ", "=", " ", "1"}], ";", "\[IndentingNewLine]", 
-      RowBox[{"hasInvested", " ", "=", " ", "True"}], ";", 
-      "\[IndentingNewLine]", 
-      RowBox[{
-       RowBox[{"For", " ", "[", 
         RowBox[{
-         RowBox[{"t", " ", "=", " ", "2"}], ",", " ", 
-         RowBox[{"t", " ", "\[LessEqual]", 
-          RowBox[{"Length", "[", "predictedPrices", "]"}]}], ",", " ", 
-         RowBox[{"t", "++"}], ",", "\[IndentingNewLine]", 
-         RowBox[{
-          RowBox[{"transactionFee", " ", "=", " ", 
-           RowBox[{"money", " ", "*", " ", 
-            RowBox[{"0.14", " ", "/", " ", "100"}]}]}], ";", 
-          "\[IndentingNewLine]", "\[IndentingNewLine]", 
-          RowBox[{"If", " ", "[", 
-           RowBox[{"hasInvested", ",", "\[IndentingNewLine]", 
-            RowBox[{"If", " ", "[", 
+         RowBox[{"transactionFee", " ", "=", " ", 
+          RowBox[{"money", " ", "*", " ", 
+           RowBox[{"0.14", " ", "/", " ", "100"}]}]}], ";", 
+         "\[IndentingNewLine]", "\[IndentingNewLine]", 
+         RowBox[{"If", " ", "[", 
+          RowBox[{"hasInvested", ",", "\[IndentingNewLine]", 
+           RowBox[{"If", " ", "[", 
+            RowBox[{
              RowBox[{
               RowBox[{
-               RowBox[{
-                RowBox[{"predictedPrices", "[", 
-                 RowBox[{"[", "t", "]"}], "]"}], " ", "+", " ", 
-                "transactionFee"}], " ", "<", 
-               RowBox[{"realPrices", "[", 
-                RowBox[{"[", 
-                 RowBox[{"t", "-", "1"}], "]"}], "]"}]}], ",", "  ", 
+               RowBox[{"predictedPrices", "[", 
+                RowBox[{"[", "t", "]"}], "]"}], " ", "+", " ", 
+               "transactionFee"}], " ", "<", 
+              RowBox[{"realPrices", "[", 
+               RowBox[{"[", 
+                RowBox[{"t", "-", "1"}], "]"}], "]"}]}], ",", "  ", 
+             "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"money", " ", "-=", " ", "transactionFee"}], ";", 
               "\[IndentingNewLine]", 
+              RowBox[{"hasInvested", "=", "False"}], ";"}], 
+             "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"money", " ", "*=", " ", 
+               RowBox[{
+                RowBox[{"realPrices", "[", 
+                 RowBox[{"[", "t", "]"}], "]"}], " ", "/", " ", 
+                RowBox[{"realPrices", "[", 
+                 RowBox[{"[", 
+                  RowBox[{"t", "-", "1"}], "]"}], "]"}]}]}], ";"}]}], 
+            "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
+           "\[IndentingNewLine]", 
+           RowBox[{"If", " ", "[", 
+            RowBox[{
+             RowBox[{
               RowBox[{
-               RowBox[{"money", " ", "-=", " ", "transactionFee"}], ";", 
-               "\[IndentingNewLine]", 
-               RowBox[{"hasInvested", "=", "False"}], ";"}], 
-              "\[IndentingNewLine]", ",", "\[IndentingNewLine]", 
-              RowBox[{
-               RowBox[{"money", " ", "*=", " ", 
+               RowBox[{"predictedPrices", "[", 
+                RowBox[{"[", "t", "]"}], "]"}], " ", "-", " ", 
+               "transactionFee"}], " ", "\[GreaterEqual]", 
+              RowBox[{"realPrices", "[", 
+               RowBox[{"[", 
+                RowBox[{"t", "-", "1"}], "]"}], "]"}]}], ",", "  ", 
+             "\[IndentingNewLine]", 
+             RowBox[{
+              RowBox[{"money", " ", "=", " ", 
+               RowBox[{
+                RowBox[{"(", 
+                 RowBox[{"money", "-", "transactionFee"}], ")"}], "*", 
                 RowBox[{
                  RowBox[{"realPrices", "[", 
                   RowBox[{"[", "t", "]"}], "]"}], " ", "/", " ", 
                  RowBox[{"realPrices", "[", 
                   RowBox[{"[", 
-                   RowBox[{"t", "-", "1"}], "]"}], "]"}]}]}], ";"}]}], 
-             "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", ",", 
-            "\[IndentingNewLine]", 
-            RowBox[{"If", " ", "[", 
-             RowBox[{
-              RowBox[{
-               RowBox[{
-                RowBox[{"predictedPrices", "[", 
-                 RowBox[{"[", "t", "]"}], "]"}], " ", "-", " ", 
-                "transactionFee"}], " ", "\[GreaterEqual]", 
-               RowBox[{"realPrices", "[", 
-                RowBox[{"[", 
-                 RowBox[{"t", "-", "1"}], "]"}], "]"}]}], ",", "  ", 
+                   RowBox[{"t", "-", "1"}], "]"}], "]"}]}]}]}], ";", 
               "\[IndentingNewLine]", 
-              RowBox[{
-               RowBox[{"money", " ", "=", " ", 
-                RowBox[{
-                 RowBox[{"(", 
-                  RowBox[{"money", "-", "transactionFee"}], ")"}], "*", 
-                 RowBox[{
-                  RowBox[{"realPrices", "[", 
-                   RowBox[{"[", "t", "]"}], "]"}], " ", "/", " ", 
-                  RowBox[{"realPrices", "[", 
-                   RowBox[{"[", 
-                    RowBox[{"t", "-", "1"}], "]"}], "]"}]}]}]}], ";", 
-               "\[IndentingNewLine]", 
-               RowBox[{"hasInvested", "=", "True"}], ";"}]}], 
-             "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], 
-          ";"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], 
-       "\[IndentingNewLine]", 
-       RowBox[{"AppendTo", "[", 
-        RowBox[{"measures", ",", 
-         RowBox[{"{", 
-          RowBox[{
-          "mae", ",", " ", "mape", ",", " ", "moneyNoFees", ",", " ", "money",
-            ",", " ", 
-           RowBox[{"N", "[", "movementAccuracy", "]"}]}], "}"}]}], 
-        "]"}]}]}]}], "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
-   "\[IndentingNewLine]", "\[IndentingNewLine]", 
-   RowBox[{"table", " ", "=", " ", 
-    RowBox[{"TableForm", "[", 
-     RowBox[{"measures", ",", 
-      RowBox[{"TableHeadings", "\[Rule]", 
-       RowBox[{"{", 
-        RowBox[{"methods", ",", " ", 
-         RowBox[{"{", 
-          RowBox[{
-          "\"\<MAE\>\"", ",", " ", "\"\<MAPE\>\"", ",", " ", 
-           "\"\<Investment profit no fees\>\"", ",", " ", 
-           "\"\<Investment profit\>\"", ",", " ", 
-           "\"\<Movement accuracy\>\""}], "}"}]}], "}"}]}]}], "]"}]}], 
-   "\[IndentingNewLine]", 
-   RowBox[{"Export", "[", 
-    RowBox[{"\"\<tidilua.tex\>\"", ",", " ", "table"}], "]"}], 
-   "\[IndentingNewLine]", 
-   RowBox[{"ListLinePlot", "[", 
-    RowBox[{
+              RowBox[{"hasInvested", "=", "True"}], ";"}]}], 
+            "\[IndentingNewLine]", "]"}]}], "\[IndentingNewLine]", "]"}], 
+         ";"}]}], "\[IndentingNewLine]", "\[IndentingNewLine]", "]"}], 
+      "\[IndentingNewLine]", 
+      RowBox[{"AppendTo", "[", 
+       RowBox[{"measures", ",", 
+        RowBox[{"{", 
+         RowBox[{
+         "mae", ",", " ", "mape", ",", " ", "moneyNoFees", ",", " ", "money", 
+          ",", " ", 
+          RowBox[{"N", "[", "movementAccuracy", "]"}]}], "}"}]}], "]"}]}]}]}],
+    "\[IndentingNewLine]", "]"}], "\[IndentingNewLine]", 
+  "\[IndentingNewLine]"}], "\[IndentingNewLine]", 
+ RowBox[{"table", " ", "=", " ", 
+  RowBox[{"TableForm", "[", 
+   RowBox[{"measures", ",", 
+    RowBox[{"TableHeadings", "\[Rule]", 
      RowBox[{"{", 
-      RowBox[{"realPrices", ",", " ", 
-       RowBox[{"predictedPricesAllMethods", "[", 
-        RowBox[{"[", 
-         RowBox[{"All", ",", "1"}], "]"}], "]"}]}], "}"}], ",", 
-     RowBox[{"PlotLegends", "\[Rule]", 
-      RowBox[{"{", 
-       RowBox[{"\"\<Real prices\>\"", ",", " ", "\"\<Predicted Prices\>\""}], 
-       "}"}]}]}], "]"}]}]}]], "Input",
+      RowBox[{"methods", ",", " ", 
+       RowBox[{"{", 
+        RowBox[{
+        "\"\<MAE\>\"", ",", " ", "\"\<MAPE\>\"", ",", " ", 
+         "\"\<Investment profit no fees\>\"", ",", " ", 
+         "\"\<Investment profit\>\"", ",", " ", "\"\<Movement accuracy\>\""}],
+         "}"}]}], "}"}]}]}], "]"}]}], "\[IndentingNewLine]", 
+ RowBox[{"Export", "[", 
+  RowBox[{"\"\<tidilua.tex\>\"", ",", " ", "table"}], 
+  "]"}], "\[IndentingNewLine]", 
+ RowBox[{"ListLinePlot", "[", 
+  RowBox[{
+   RowBox[{"{", 
+    RowBox[{"realPrices", ",", " ", 
+     RowBox[{"predictedPricesAllMethods", "[", 
+      RowBox[{"[", 
+       RowBox[{"All", ",", "1"}], "]"}], "]"}]}], "}"}], ",", 
+   RowBox[{"PlotLegends", "\[Rule]", 
+    RowBox[{"{", 
+     RowBox[{"\"\<Real prices\>\"", ",", " ", "\"\<Predicted Prices\>\""}], 
+     "}"}]}]}], "]"}]}], "Input",
  CellChangeTimes->{{3.639308375776013*^9, 3.6393084395766172`*^9}, {
    3.639308478386278*^9, 3.639308484230022*^9}, {3.639308834971859*^9, 
    3.639308843557012*^9}, {3.639308894401366*^9, 3.639308925652276*^9}, 
@@ -811,7 +827,8 @@ Cell[BoxData[
    3.639422297332337*^9}, {3.639422341665393*^9, 3.6394225114281893`*^9}, {
    3.639422548170969*^9, 3.6394225910827227`*^9}, {3.639422647559268*^9, 
    3.639422655830847*^9}, {3.639422730969141*^9, 3.639422745506806*^9}, {
-   3.6394228575799227`*^9, 3.639422867162777*^9}}],
+   3.6394228575799227`*^9, 3.639422867162777*^9}, {3.6394818167526627`*^9, 
+   3.639481817961203*^9}}],
 
 Cell[BoxData[
  TagBox[
@@ -1164,6 +1181,11 @@ yMvwL8qD7jw=
    3.639422656537324*^9, 3.6394228676521873`*^9}]
 }, Open  ]],
 
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  StyleBox["Classifiers", "Title"]}]], "Input",
+ CellChangeTimes->{{3.63948183849378*^9, 3.639481846689954*^9}}],
+
 Cell[CellGroupData[{
 
 Cell[BoxData[{
@@ -1442,6 +1464,12 @@ Cell[BoxData[
    3.6393865276945467`*^9, 3.639386545283148*^9}, {3.63938687957948*^9, 
    3.6393868930681057`*^9}}]
 }, Open  ]],
+
+Cell[BoxData[
+ RowBox[{"\[IndentingNewLine]", 
+  StyleBox[
+   RowBox[{"Classifiers", " ", "results"}], "Title"]}]], "Input",
+ CellChangeTimes->{{3.639481855149683*^9, 3.639481857256711*^9}}],
 
 Cell[CellGroupData[{
 
@@ -1860,48 +1888,53 @@ CellTagsIndex->{}
 *)
 (*NotebookFileOutline
 Notebook[{
+Cell[558, 20, 183, 4, 70, "Input"],
 Cell[CellGroupData[{
-Cell[580, 22, 6549, 110, 131, "Input"],
-Cell[7132, 134, 2142, 29, 28, "Output"],
-Cell[9277, 165, 12480, 235, 249, "Output"]
+Cell[766, 28, 6599, 111, 131, "Input"],
+Cell[7368, 141, 2142, 29, 28, "Output"],
+Cell[9513, 172, 12480, 235, 249, "Output"]
 }, Open  ]],
+Cell[22008, 410, 159, 3, 68, "Input"],
 Cell[CellGroupData[{
-Cell[21794, 405, 7805, 156, 335, "Input"],
-Cell[29602, 563, 598, 11, 28, "Output"],
-Cell[30203, 576, 483, 8, 28, "Output"],
-Cell[30689, 586, 520, 9, 28, "Output"]
+Cell[22192, 417, 7805, 156, 335, "Input"],
+Cell[30000, 575, 598, 11, 28, "Output"],
+Cell[30601, 588, 483, 8, 28, "Output"],
+Cell[31087, 598, 520, 9, 28, "Output"]
 }, Open  ]],
+Cell[31622, 610, 188, 4, 68, "Input"],
 Cell[CellGroupData[{
-Cell[31246, 600, 9979, 213, 777, "Input"],
-Cell[41228, 815, 1757, 47, 76, "Output"],
-Cell[42988, 864, 188, 3, 28, "Output"],
-Cell[43179, 869, 14598, 294, 244, "Output"]
+Cell[31835, 618, 9779, 212, 760, "Input"],
+Cell[41617, 832, 1757, 47, 65, "Output"],
+Cell[43377, 881, 188, 3, 28, "Output"],
+Cell[43568, 886, 14598, 294, 244, "Output"]
 }, Open  ]],
+Cell[58181, 1183, 159, 3, 70, "Input"],
 Cell[CellGroupData[{
-Cell[57814, 1168, 5761, 134, 369, "Input"],
-Cell[63578, 1304, 3989, 125, 46, "Output"],
-Cell[67570, 1431, 671, 11, 28, "Output"]
+Cell[58365, 1190, 5761, 134, 369, "Input"],
+Cell[64129, 1326, 3989, 125, 46, "Output"],
+Cell[68121, 1453, 671, 11, 28, "Output"]
 }, Open  ]],
+Cell[68807, 1467, 190, 4, 70, "Input"],
 Cell[CellGroupData[{
-Cell[68278, 1447, 3341, 83, 318, "Input"],
-Cell[71622, 1532, 1953, 48, 65, "Output"],
-Cell[73578, 1582, 630, 9, 28, "Output"]
+Cell[69022, 1475, 3341, 83, 318, "Input"],
+Cell[72366, 1560, 1953, 48, 65, "Output"],
+Cell[74322, 1610, 630, 9, 28, "Output"]
 }, Open  ]],
-Cell[74223, 1594, 92, 1, 28, "Input"],
+Cell[74967, 1622, 92, 1, 28, "Input"],
 Cell[CellGroupData[{
-Cell[74340, 1599, 475, 10, 63, "Input"],
-Cell[74818, 1611, 143, 3, 28, "Output"],
-Cell[74964, 1616, 1849, 53, 65, "Output"]
+Cell[75084, 1627, 475, 10, 63, "Input"],
+Cell[75562, 1639, 143, 3, 28, "Output"],
+Cell[75708, 1644, 1849, 53, 65, "Output"]
 }, Open  ]],
-Cell[76828, 1672, 638, 19, 28, "Input"],
+Cell[77572, 1700, 638, 19, 28, "Input"],
 Cell[CellGroupData[{
-Cell[77491, 1695, 2617, 70, 212, InheritFromParent],
-Cell[80111, 1767, 2154, 59, 149, "Output"],
-Cell[82268, 1828, 196, 3, 28, "Output"],
-Cell[82467, 1833, 209, 3, 28, "Output"]
+Cell[78235, 1723, 2617, 70, 212, "Input"],
+Cell[80855, 1795, 2154, 59, 149, "Output"],
+Cell[83012, 1856, 196, 3, 28, "Output"],
+Cell[83211, 1861, 209, 3, 28, "Output"]
 }, Open  ]],
-Cell[82691, 1839, 92, 1, 28, InheritFromParent],
-Cell[82786, 1842, 94, 1, 28, InheritFromParent]
+Cell[83435, 1867, 92, 1, 28, "Input"],
+Cell[83530, 1870, 94, 1, 28, "Input"]
 }
 ]
 *)
